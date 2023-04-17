@@ -1,5 +1,6 @@
 # cse210-student-template
-This is the starter code for students in CSE 210.
+## Travis A Mix.
+-why oh why did they not give us a vs2022 version to work with instead???
 
 This repository contains the starter code for many different projects. They are arranged as follows:
 
