@@ -1,9 +1,21 @@
-using System;
-
-class Program
+namespace GuessNumberGame
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        Console.WriteLine("Hello Prep3 World!");
+        static void Main(string[] args)
+        {
+            bool again = true;
+
+            while (again)
+            {
+                Game game = new();
+                while (game.GuessedNumber != game.MagicNumber)
+                {
+                    game.GuessedNumber = game.NumberGuess();
+                    game.LowerHigherWin();
+                }
+                again = Game.Again();
+            }
+        }
     }
 }
