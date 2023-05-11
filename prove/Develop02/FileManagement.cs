@@ -19,14 +19,11 @@ namespace JournalApp
     public void SaveFile()
     {
 
-      using (StreamWriter outputFile = new StreamWriter(FileName))
+      using StreamWriter outputFile = new(FileName);
+      foreach (var line in SaveList)
       {
-        foreach (var line in SaveList)
-        {
-          outputFile.WriteLine(line.FinalizedEntry);
-        }
+        outputFile.WriteLine(line.FinalizedEntry);
       }
-      SaveList.Clear();
     }
 
 

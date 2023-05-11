@@ -5,7 +5,7 @@ namespace JournalApp
     static void Main(string[] args)
     {
       Menu menu = new();
-      Journal journal = new Journal();
+      Journal journal = new();
       bool flag = true;
       while (flag)
       {

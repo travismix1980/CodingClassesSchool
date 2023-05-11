@@ -2,9 +2,7 @@ namespace JournalApp
 {
   public class Menu
   {
-    Journal j = new();
-
-    private string[] menuPrompts = new string[] {
+    private readonly string[] menuPrompts = new string[] {
             "Write",
             "New Journal",
             "Display",
