@@ -14,7 +14,7 @@ namespace JournalApp
         switch (menu.UserChoice)
         {
           case 1:
-            journal.Write();
+            journal.CreateEntry();
             break;
           case 2:
             journal.NewJournal();

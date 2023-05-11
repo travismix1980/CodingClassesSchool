@@ -1,18 +1,10 @@
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace JournalApp
 {
   public class Menu
   {
     Journal j = new();
 
-    private readonly string[] menuPrompts = new string[] {
+    private string[] menuPrompts = new string[] {
             "Write",
             "New Journal",
             "Display",

@@ -1,50 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
-using System.IO;
-
 namespace JournalApp
 {
   public class Journal
   {
-    public List<string> journalPosts = new();
+    public List<Entry> entries = new();
+    public string EntryPrompt { get; set; }
+    public string EntryPost { get; set; }
+    public DateTime Date { get; set; }
 
-    public List<string> writingPrompts = new();
-
-    public Journal()
+    public void CreateEntry()
     {
-      //read in and store our writing prompts
-      foreach (var line in File.ReadAllLines("writing_prompts.txt"))
-      {
-        writingPrompts.Add(line.TrimEnd(',').Trim('"'));
-      }
-
-    }
-
-    public int GetRandomNumber()
-    {
-      Random rand = new();
-      return rand.Next(0, writingPrompts.Count);
-    }
-
-    public void Write()
-    {
-      //Console.WriteLine(today.ToString("dd/MM/yyyy"));
-      string? userInput = "";
-      DateTime today = DateTime.Today;
-      // generate random number between 0 and writing prompts.length
-      string prompt = writingPrompts[GetRandomNumber()];
-      userInput += today.ToString("dd/MM/yyyy");
-      Console.WriteLine(); // for spacing
-      Console.WriteLine($"Prompt: {prompt}");
-      Console.WriteLine();
-      userInput += " " + prompt + "\n\n";
-      userInput += Console.ReadLine();
-      userInput += "\n";
-      journalPosts.Add(userInput);
+      PromptGenerator prompt = new();
+      EntryPrompt = prompt.GetRandomPrompt();
+      Date = DateTime.Today;
+      Console.WriteLine(); // Spacing
+      Console.WriteLine($"Prompt: {EntryPrompt}");
+      EntryPost = Console.ReadLine();
+      entries.Add(new Entry(EntryPrompt, EntryPost, Date));
       Console.WriteLine(); // spacing
     }
 
@@ -54,23 +25,25 @@ namespace JournalApp
       Console.Write("Would you like to save current journal first (y\\n)? ");
       string decision = Console.ReadLine().ToLower().Trim();
       decision = decision[0].ToString();
-      Console.WriteLine(decision);
 
       if (decision == "y")
       {
         Save();
       }
-      journalPosts.Clear();
+      entries.Clear();
       Console.WriteLine("New Journal Created... Feel free to make more posts using the Write Option...");
       Console.WriteLine();
     }
 
     public void Display()
     {
-      foreach (var post in journalPosts)
+      foreach (var post in entries)
       {
-        Console.WriteLine(post);
-        Console.WriteLine(); // spacing
+        string[] userPost = post.FinalizedEntry.Split("Post:");
+        string[] userPost2 = userPost[0].Split("Prompt:");
+        Console.WriteLine(userPost2[0]);
+        Console.WriteLine($"Prompt: {userPost2[1]}");
+        Console.WriteLine($"Post: {userPost[1]}\n");
       }
     }
 
@@ -79,21 +52,18 @@ namespace JournalApp
       Console.WriteLine("Enter the file you would like to load?");
       Console.WriteLine("Enter only the file name no extensions (.txt, .csv, etc.)");
       Console.Write("Only text files created by this program please ");
-      string? fileName = Console.ReadLine();
+      string fileName = Console.ReadLine();
       fileName += ".txt";
 
       //clear journalPosts and replace it with new file
-      journalPosts.Clear();
-
-      foreach (var line in File.ReadAllLines(fileName))
-      {
-        journalPosts.Add(line.TrimEnd());
-      }
+      entries.Clear();
+      FileManagement fm = new(fileName);
+      entries = fm.LoadFile();
     }
 
     public void Save()
     {
-      string? fileName;
+      string fileName;
       Console.Write("Enter your filename with no extension (.txt, .csv, etc) ");
       fileName = Console.ReadLine();
 
@@ -105,13 +75,8 @@ namespace JournalApp
       else
       {
         fileName += ".txt";
-        using (StreamWriter outputFile = new(fileName))
-        {
-          foreach (var post in journalPosts)
-          {
-            outputFile.WriteLine(post);
-          }
-        }
+        FileManagement fm = new(fileName, entries);
+        fm.SaveFile();
 
         Console.WriteLine($"File saved as {fileName}");
         Console.WriteLine();
