@@ -1,5 +1,7 @@
 namespace JournalApp
 {
+  // this Class handles saving and loading to text files
+  // to optimize I really should make this static
   public class FileManagement
   {
     // list to save all of our entries into when we bring them in from journal
