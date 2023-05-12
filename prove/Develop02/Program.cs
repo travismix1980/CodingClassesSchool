@@ -1,7 +1,14 @@
 namespace JournalApp
 {
-  internal class Program
+  public class Program
   {
+
+    // main entry point for our code
+    // it generates an instance of all needed Classes
+    // and runs a loop to keep the program running till
+    // the user wants to quit
+    // then we display the menu output and chose our code
+    // based on the users input.
     static void Main(string[] args)
     {
       Menu menu = new();
@@ -28,19 +35,22 @@ namespace JournalApp
           case 5:
             journal.Save();
             break;
+          // case 6 and default set the flag var to false and quit the program
           case 6:
-            Console.WriteLine("Thank you for using the journal program!");
-            flag = false;
-            Console.WriteLine("Closing now");
+            flag = Quit();
             break;
           default:
-            Console.WriteLine("Thank you for using the journal program!");
-            flag = false;
-            Console.WriteLine("Closing now");
+            flag = Quit();
             break;
         }
       }
-
     }
+    public static bool Quit(){
+      Console.WriteLine("Thank you for using the journal program!");
+      Console.WriteLine("Closing now");
+      return false;
+    }
+
+
   }
 }

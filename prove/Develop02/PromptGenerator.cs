@@ -1,7 +1,9 @@
 namespace JournalApp
 {
+  // this Class generates randomly chosen writing prompts
   public class PromptGenerator
   {
+    // readonly (not writable to at runtime) string array of writing prompts
     private readonly string[] prompts = {
       "What happened today?",
       "What was the best thing that happened today?",
@@ -46,6 +48,9 @@ namespace JournalApp
       "How can I set realistic expectations and boundaries to reduce stress?"
     };
 
+    // this generates a random number between 0 and max
+    // to get a random prompt from the array of prompts and
+    // returns the prompt
     public string GetRandomPrompt()
     {
       Random rand = new();

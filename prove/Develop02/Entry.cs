@@ -1,5 +1,12 @@
 namespace JournalApp
 {
+  // this is a required class for the assignment
+  // you need to have the three things to save for the journal
+  // a string for the randomly created prompt
+  // a string for the user input
+  // a date for the entry
+  // FinalizedEntry I added to keep loading and saving
+  // to text files as well as output
   public class Entry
   {
     public string Prompt { get; set; }
