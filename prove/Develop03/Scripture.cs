@@ -124,10 +124,18 @@ namespace Scripture
     // and if that count equals or exceeds the number
     // of words in a scripture then it is completely
     // hidden
-    //TODO: Make this work
     public bool IsCompletelyHidden()
     {
-      if (wordCountTotal >= wordCountMax)
+      int count = 0;
+      foreach (var word in _words)
+      {
+        if (word.GetIsShown() == false)
+        {
+          count++;
+        }
+      }
+
+      if (count >= _words.Count())
       {
         return true;
       }
