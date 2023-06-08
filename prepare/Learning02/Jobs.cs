@@ -20,11 +20,11 @@ namespace Learning2
     #region
     public void SetCompany(string company) => _company = company;
 
-    public string? GetCompany() => _company;
+    public string GetCompany() => _company;
 
     public void SetJobTitle(string jobTitle) => _jobTitle = jobTitle;
 
-    public string? GetJobTitle() => _jobTitle;
+    public string GetJobTitle() => _jobTitle;
 
     public void SetStartYear(int startYear) => _startYear = startYear;
 
