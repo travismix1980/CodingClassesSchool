@@ -32,11 +32,13 @@ public Activity(){}
     _activityTime = milliseconds;
   }
 
-  public void ShowSpinner(){
-
+  public void ShowSpinner(int frameTime, int animationTime){
+    Animation a = new();
+    a.PlaySpinnerAnimation(frameTime, animationTime);
   }
 
-  public void ShowCountdown(){
-
+  public void ShowCountdown(int maxCount){
+    Animation a = new();
+    a.PlayCountdownAnimation(5);
   }
 }
