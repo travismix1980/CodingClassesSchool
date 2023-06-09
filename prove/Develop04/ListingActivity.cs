@@ -2,8 +2,8 @@ class ListingActivity: Activity{
   private List<string> _listQuestions;
   private int _countListings;
 
-  public ListingActivity(string startingMessage, string endingMessage, int activityTime):
-                    base(startingMessage, endingMessage, activityTime){
+  public ListingActivity(string startingMessage, string endingMessage):
+                    base(startingMessage, endingMessage){
 
   }
 

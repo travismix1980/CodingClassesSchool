@@ -1,19 +1,31 @@
 class Activity{
-  private string _startingMessage;
-  private string _endingMessage;
+  protected string _startingMessage;
+  protected string _endingMessage;
   private int _activityTime;
 
-  public Activity(string startingMessage, string endingMessage, int activityTime){
+public Activity(){}
+  public Activity(string startingMessage, string endingMessage){
     _startingMessage = startingMessage;
     _endingMessage = endingMessage;
-    _activityTime = activityTime;
   }
 
-  public void DisplayStartingMessage(){
-
+  protected void SetStartingMessage(string startingMessage){
+    _startingMessage = startingMessage;
   }
 
-  public void DisplayEndingMessage(){
+  protected void SetEndingMessage(string endingMessage){
+    _endingMessage = endingMessage;
+  }
+
+  public string DisplayStartingMessage(){
+    return _startingMessage;
+  }
+
+  public string DisplayEndingMessage(){
+    return _endingMessage;
+  }
+
+  public void SetActivityTime(){
 
   }
 
@@ -22,6 +34,6 @@ class Activity{
   }
 
   public void ShowCountdown(){
-    
+
   }
 }
