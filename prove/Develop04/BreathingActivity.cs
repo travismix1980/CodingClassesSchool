@@ -1,18 +1,11 @@
 class BreathingActivity: Activity{
-  private int _breatheTime;
   const string START_MESSAGE = "Welcome to the Breathing Activity";
   const string END_MESSAGE = "You completed your breathing time. Well Done!";
   private const string DESCRIPTION = "This activity will help you relax by walking you through breathing in and out slowly.  Clear your mind and focus on your breathing";
 
-  public BreathingActivity(string startingMessage, string endingMessage):
-                      base(startingMessage, endingMessage){
-
-  }
-
   public BreathingActivity(){
     base.SetStartingMessage(START_MESSAGE);
     base.SetEndingMessage(END_MESSAGE);
-
   }
 
   public void BreatheInOut(){
@@ -33,6 +26,7 @@ class BreathingActivity: Activity{
   public void RunBreathe(){
     Console.WriteLine($"\n{base.DisplayStartingMessage()}");
     Console.WriteLine($"\n{DESCRIPTION}");
+    SetActivityTimeInMilliseconds();  // set timer with base class _activityTime
     // add spinner here for a short time
     BreatheInOut();
     Console.WriteLine($"\n{base.DisplayEndingMessage()}");

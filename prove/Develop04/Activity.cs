@@ -25,8 +25,11 @@ public Activity(){}
     return _endingMessage;
   }
 
-  public void SetActivityTime(){
-
+  public void SetActivityTimeInMilliseconds(){
+    Console.Write("How long would you like to do this activity in minutes? ");
+    double minutes = Convert.ToDouble(Console.ReadLine());
+    int milliseconds = Convert.ToInt32(minutes * 60) * 1000;
+    _activityTime = milliseconds;
   }
 
   public void ShowSpinner(){
