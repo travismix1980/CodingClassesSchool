@@ -5,15 +5,11 @@ namespace Mindfulness
     static void Main(string[] args)
     {
       Menu menu = new();
-      
+
       const string QUIT_MESSAGE = "Thank you for being mindful exiting now";
-
-      SelectActivity(menu.RunMenu());
-
-      #region Chose Activity
-
-      void SelectActivity(int choice)
-      {
+      int choice = 0;
+      while(choice != 4){
+        choice = menu.RunMenu();
         switch (choice)
         {
           case 1:
@@ -30,6 +26,8 @@ namespace Mindfulness
             break;
           case 4:
             Console.WriteLine(QUIT_MESSAGE);
+            Thread.Sleep(5000);
+            Console.Clear();
             break;
           default:
             Console.WriteLine("Invalid Choice");
@@ -37,7 +35,6 @@ namespace Mindfulness
             break;
         }
       }
-      #endregion
     }
   }
 }

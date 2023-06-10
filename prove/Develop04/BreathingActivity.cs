@@ -43,6 +43,7 @@ class BreathingActivity: Activity{
   }
 
   public void RunBreathe(){
+    Console.Clear();
     Console.WriteLine($"\n{base.DisplayStartingMessage()}");
     Console.WriteLine($"\n{DESCRIPTION}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
@@ -52,5 +53,7 @@ class BreathingActivity: Activity{
     Console.WriteLine(); // spacing
     BreatheInOut();
     Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Thread.Sleep(5000);
+    Console.Clear();
   }
 }

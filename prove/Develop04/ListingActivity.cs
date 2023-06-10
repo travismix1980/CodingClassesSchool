@@ -48,6 +48,7 @@ public ListingActivity(){
   }
 
   public void RunListing(){
+    Console.Clear();
     Console.WriteLine($"\n{base.DisplayStartingMessage()}");
     Console.WriteLine($"\n{DESCRIPTION}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
@@ -59,5 +60,7 @@ public ListingActivity(){
     Listing();
     SetEndingMessage($"Congrats you were able to list {_countListings} items in {_activityTime / 1000} seconds thats not so bad is it?");
     Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Thread.Sleep(5000);
+    Console.Clear();
   }
 }

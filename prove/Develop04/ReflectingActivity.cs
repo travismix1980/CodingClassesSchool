@@ -68,6 +68,7 @@ class ReflectingActivity: Activity{
   }
 
   public void RunReflecting(){
+    Console.Clear();
     Console.WriteLine($"\n{base.DisplayStartingMessage()}");
     Console.WriteLine($"\n{DESCRIPTION}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
@@ -78,5 +79,7 @@ class ReflectingActivity: Activity{
     StartReflecting();
     RunQuestions();
     Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Thread.Sleep(5000);
+    Console.Clear();
   }
 }
