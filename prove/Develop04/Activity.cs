@@ -1,7 +1,7 @@
 class Activity{
   protected string _startingMessage;
   protected string _endingMessage;
-  private int _activityTime;
+  protected int _activityTime;
 
 public Activity(){}
   public Activity(string startingMessage, string endingMessage){
@@ -26,9 +26,9 @@ public Activity(){}
   }
 
   public void SetActivityTimeInMilliseconds(){
-    Console.Write("How long would you like to do this activity in minutes? ");
-    double minutes = Convert.ToDouble(Console.ReadLine());
-    int milliseconds = Convert.ToInt32(minutes * 60) * 1000;
+    Console.Write("\nHow long would you like to do this activity in seconds? ");
+    int seconds = Convert.ToInt32(Console.ReadLine());
+    int milliseconds = seconds * 1000;
     _activityTime = milliseconds;
   }
 
@@ -39,6 +39,6 @@ public Activity(){}
 
   public void ShowCountdown(int maxCount){
     Animation a = new();
-    a.PlayCountdownAnimation(5);
+    a.PlayCountdownAnimation(maxCount);
   }
 }

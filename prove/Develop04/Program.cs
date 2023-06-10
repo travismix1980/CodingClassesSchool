@@ -6,8 +6,6 @@ namespace Mindfulness
     {
       Menu menu = new();
       Activity a = new();
-      a.ShowSpinner(500, 10000);
-      a.ShowCountdown(10);
       const string REFLECT_START_MESSAGE = "Welcome to the Reflecting Activity";
       const string REFLECT_END_MESSAGE = "";
       const string LISTING_START_MESSAGE = "Welcome to the Listing Activity";
