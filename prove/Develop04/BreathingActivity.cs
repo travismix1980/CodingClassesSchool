@@ -1,13 +1,12 @@
 using System.Diagnostics;
 
 class BreathingActivity: Activity{
-  private const string START_MESSAGE = "Welcome to the Breathing Activity";
-  private const string END_MESSAGE = "You completed your breathing time. Well Done!";
-  private const string DESCRIPTION = "This activity will help you relax by walking you through breathing in and out slowly.  Clear your mind and focus on your breathing";
 
   public BreathingActivity(){
-    base.SetStartingMessage(START_MESSAGE);
-    base.SetEndingMessage(END_MESSAGE);
+    SetStartingMessage("Welcome to the Breathing Activity");
+    SetEndingMessage("You completed your breathing time. Well Done!");
+    SetDescriptionMessage("This activity will help you relax by walking you through breathing in and out slowly.  Clear your mind and focus on your breathing");
+
   }
 
   public void BreatheInOut(){
@@ -44,15 +43,15 @@ class BreathingActivity: Activity{
 
   public void RunBreathe(){
     Console.Clear();
-    Console.WriteLine($"\n{base.DisplayStartingMessage()}");
-    Console.WriteLine($"\n{DESCRIPTION}");
+    Console.WriteLine($"\n{DisplayStartingMessage()}");
+    Console.WriteLine($"\n{DisplayDescriptionMessage()}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
     Console.Clear();
     Console.WriteLine("Get ready...");
     ShowSpinner(500, 5000); // play animation for 5 seconds
     Console.WriteLine(); // spacing
     BreatheInOut();
-    Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Console.WriteLine($"\n{DisplayEndingMessage()}");
     Thread.Sleep(5000);
     Console.Clear();
   }

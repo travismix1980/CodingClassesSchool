@@ -3,9 +3,6 @@ using System.Diagnostics;
 class ReflectingActivity: Activity{
   private List<string> _prompts = new();
   private List<string> _questions = new();
-  private const string START_MESSAGE = "Welcome to the Reflecting Activity";
-  private const string END_MESSAGE = "You completed your reflection time. Well Done!";
-  private const string DESCRIPTION = "This activity will help you reflect on times in your life when you have shown strength and resilience.  This will help you to recognize the power you have and how you can use it in other aspects of your life.";
 
   public ReflectingActivity(){
     string[] promptsArr = {
@@ -30,8 +27,9 @@ class ReflectingActivity: Activity{
     _prompts.AddRange(promptsArr);
     _questions.AddRange(questionsArr);
 
-    base.SetStartingMessage(START_MESSAGE);
-    base.SetEndingMessage(END_MESSAGE);
+    SetStartingMessage("Welcome to the Reflecting Activity");
+    SetEndingMessage("You completed your reflection time. Well Done!");
+    SetDescriptionMessage("This activity will help you reflect on times in your life when you have shown strength and resilience.  This will help you to recognize the power you have and how you can use it in other aspects of your life.");
   }
 
   public string GetRandomPrompt(){
@@ -69,8 +67,8 @@ class ReflectingActivity: Activity{
 
   public void RunReflecting(){
     Console.Clear();
-    Console.WriteLine($"\n{base.DisplayStartingMessage()}");
-    Console.WriteLine($"\n{DESCRIPTION}");
+    Console.WriteLine($"\n{DisplayStartingMessage()}");
+    Console.WriteLine($"\n{DisplayDescriptionMessage()}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
     Console.Clear();
     Console.WriteLine("Get ready...");
@@ -78,7 +76,7 @@ class ReflectingActivity: Activity{
     Console.WriteLine(); // spacing
     StartReflecting();
     RunQuestions();
-    Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Console.WriteLine($"\n{DisplayEndingMessage()}");
     Thread.Sleep(5000);
     Console.Clear();
   }

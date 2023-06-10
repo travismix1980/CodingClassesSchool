@@ -1,12 +1,14 @@
 class Activity{
   protected string _startingMessage;
   protected string _endingMessage;
+  protected string _description;
   protected int _activityTime;
 
 public Activity(){}
-  public Activity(string startingMessage, string endingMessage){
+  public Activity(string startingMessage, string endingMessage, string description){
     _startingMessage = startingMessage;
     _endingMessage = endingMessage;
+    _description = description;
   }
 
   protected void SetStartingMessage(string startingMessage){
@@ -17,12 +19,20 @@ public Activity(){}
     _endingMessage = endingMessage;
   }
 
+  protected void SetDescriptionMessage(string description){
+    _description = description;
+  }
+
   public string DisplayStartingMessage(){
     return _startingMessage;
   }
 
   public string DisplayEndingMessage(){
     return _endingMessage;
+  }
+
+  public string DisplayDescriptionMessage(){
+    return _description;
   }
 
   public void SetActivityTimeInMilliseconds(){

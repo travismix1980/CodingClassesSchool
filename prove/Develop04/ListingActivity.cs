@@ -3,9 +3,6 @@ using System.Diagnostics;
 class ListingActivity: Activity{
   private List<string> _listQuestions = new();
   private int _countListings;
-  private const string START_MESSAGE = "Welcome to the Listing Activity";
-  private string _endMessage = "";
-  private const string DESCRIPTION = "This activity will help you reflect on good things in your life by having you list as many things as you can in a certain time limit.";
 
 public ListingActivity(){
   _countListings = 0;
@@ -18,8 +15,8 @@ public ListingActivity(){
   };
   _listQuestions.AddRange(listQuestionsArr);
 
-  base.SetStartingMessage(START_MESSAGE);
-  base.SetEndingMessage(_endMessage);
+  SetStartingMessage("Welcome to the Listing Activity");
+  SetDescriptionMessage("This activity will help you reflect on good things in your life by having you list as many things as you can in a certain time limit.");
 }
 
   public string GetRandomListQuestion(){
@@ -49,8 +46,8 @@ public ListingActivity(){
 
   public void RunListing(){
     Console.Clear();
-    Console.WriteLine($"\n{base.DisplayStartingMessage()}");
-    Console.WriteLine($"\n{DESCRIPTION}");
+    Console.WriteLine($"\n{DisplayStartingMessage()}");
+    Console.WriteLine($"\n{DisplayDescriptionMessage()}");
     SetActivityTimeInMilliseconds();  // set timer with base _activityTime
     Console.Clear();
     Console.WriteLine("Get ready...");
@@ -59,7 +56,7 @@ public ListingActivity(){
     StartListing();
     Listing();
     SetEndingMessage($"Congrats you were able to list {_countListings} items in {_activityTime / 1000} seconds thats not so bad is it?");
-    Console.WriteLine($"\n{base.DisplayEndingMessage()}");
+    Console.WriteLine($"\n{DisplayEndingMessage()}");
     Thread.Sleep(5000);
     Console.Clear();
   }
