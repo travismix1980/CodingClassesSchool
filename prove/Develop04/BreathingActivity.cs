@@ -1,8 +1,8 @@
 using System.Diagnostics;
 
 class BreathingActivity: Activity{
-  const string START_MESSAGE = "Welcome to the Breathing Activity";
-  const string END_MESSAGE = "You completed your breathing time. Well Done!";
+  private const string START_MESSAGE = "Welcome to the Breathing Activity";
+  private const string END_MESSAGE = "You completed your breathing time. Well Done!";
   private const string DESCRIPTION = "This activity will help you relax by walking you through breathing in and out slowly.  Clear your mind and focus on your breathing";
 
   public BreathingActivity(){

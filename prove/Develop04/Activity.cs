@@ -26,7 +26,7 @@ public Activity(){}
   }
 
   public void SetActivityTimeInMilliseconds(){
-    Console.Write("\nHow long would you like to do this activity in seconds? ");
+    Console.Write("\nHow long would you like to do this activity in seconds?(using increments of 10 seconds) ");
     int seconds = Convert.ToInt32(Console.ReadLine());
     int milliseconds = seconds * 1000;
     _activityTime = milliseconds;

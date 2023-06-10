@@ -5,11 +5,7 @@ namespace Mindfulness
     static void Main(string[] args)
     {
       Menu menu = new();
-      Activity a = new();
-      const string REFLECT_START_MESSAGE = "Welcome to the Reflecting Activity";
-      const string REFLECT_END_MESSAGE = "";
-      const string LISTING_START_MESSAGE = "Welcome to the Listing Activity";
-      const string LISTING_END_MESSAGE = "";
+      
       const string QUIT_MESSAGE = "Thank you for being mindful exiting now";
 
       SelectActivity(menu.RunMenu());
@@ -25,11 +21,11 @@ namespace Mindfulness
             ba.RunBreathe();
             break;
           case 2:
-            ReflectingActivity ra = new(REFLECT_START_MESSAGE, REFLECT_END_MESSAGE);
+            ReflectingActivity ra = new();
             ra.RunReflecting();
             break;
           case 3:
-            ListingActivity la = new(LISTING_START_MESSAGE, LISTING_END_MESSAGE);
+            ListingActivity la = new();
             la.RunListing();
             break;
           case 4:
