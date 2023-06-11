@@ -18,7 +18,7 @@ class BreathingActivity: Activity{
     // to breath out and I don't want anyone passing out
     Stopwatch sw = new();
     sw.Start();
-    while(sw.Elapsed.TotalMilliseconds < _activityTime){
+    while(sw.Elapsed.TotalMilliseconds < GetActivityTime()){
       BreatheIn();
       BreatheOut();
     }
@@ -52,7 +52,7 @@ class BreathingActivity: Activity{
     Console.WriteLine(); // spacing
     BreatheInOut();
     Console.WriteLine($"\n{DisplayEndingMessage()}");
-    Thread.Sleep(5000);
+    ShowPauseAnimation(5);
     Console.Clear();
   }
 }

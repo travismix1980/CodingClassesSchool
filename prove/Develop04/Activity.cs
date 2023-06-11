@@ -1,8 +1,8 @@
 class Activity{
-  protected string _startingMessage;
-  protected string _endingMessage;
-  protected string _description;
-  protected int _activityTime;
+  private string _startingMessage;
+  private string _endingMessage;
+  private string _description;
+  private int _activityTime;
 
 public Activity(){}
   public Activity(string startingMessage, string endingMessage, string description){
@@ -23,32 +23,41 @@ public Activity(){}
     _description = description;
   }
 
-  public string DisplayStartingMessage(){
+  protected string DisplayStartingMessage(){
     return _startingMessage;
   }
 
-  public string DisplayEndingMessage(){
+  protected string DisplayEndingMessage(){
     return _endingMessage;
   }
 
-  public string DisplayDescriptionMessage(){
+  protected string DisplayDescriptionMessage(){
     return _description;
   }
 
-  public void SetActivityTimeInMilliseconds(){
+  protected int GetActivityTime(){
+    return _activityTime;
+  }
+
+  protected void SetActivityTimeInMilliseconds(){
     Console.Write("\nHow long would you like to do this activity in seconds?(using increments of 10 seconds) ");
     int seconds = Convert.ToInt32(Console.ReadLine());
     int milliseconds = seconds * 1000;
     _activityTime = milliseconds;
   }
 
-  public void ShowSpinner(int frameTime, int animationTime){
+  protected void ShowSpinner(int frameTime, int animationTime){
     Animation a = new();
     a.PlaySpinnerAnimation(frameTime, animationTime);
   }
 
-  public void ShowCountdown(int maxCount){
+  protected void ShowCountdown(int maxCount){
     Animation a = new();
     a.PlayCountdownAnimation(maxCount);
+  }
+
+  protected void ShowPauseAnimation(int pauseTime){
+    Animation a = new();
+    a.PauseAnimation(pauseTime);
   }
 }

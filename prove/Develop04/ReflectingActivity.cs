@@ -3,16 +3,8 @@ using System.Diagnostics;
 class ReflectingActivity: Activity{
   private List<string> _prompts = new();
   private List<string> _questions = new();
-
-  public ReflectingActivity(){
-    string[] promptsArr = {
-      "Think of a time when you stood up for someone else.",
-      "Think of a time when you did something really difficult.",
-      "Think of a time when you helped someone in need.",
-      "Think of a time when you did something truly selfless.",
-    };
-
-    string[] questionsArr = {
+  private string _question;
+  private string[] questionsArr = {
       "Why was this experience meaningful to you?",
       "Have you ever done anything like this before?",
       "How did you get started?",
@@ -23,6 +15,16 @@ class ReflectingActivity: Activity{
       "What did you learn about yourself through this experience?",
       "How can you keep this experience in mind in the future?"
     };
+
+  public ReflectingActivity(){
+    string[] promptsArr = {
+      "Think of a time when you stood up for someone else.",
+      "Think of a time when you did something really difficult.",
+      "Think of a time when you helped someone in need.",
+      "Think of a time when you did something truly selfless.",
+    };
+
+
 
     _prompts.AddRange(promptsArr);
     _questions.AddRange(questionsArr);
@@ -40,8 +42,14 @@ class ReflectingActivity: Activity{
 
   public string GetRandomQuestion(){
     Random rand = new();
+    if(_questions.Count == 0){
+      _questions.AddRange(questionsArr);
+      Console.WriteLine("Why don't we spend some more time on the following questions.");
+    }
     int randNum = rand.Next(_questions.Count);
-    return _questions[randNum];
+    _question = _questions[randNum];
+    _questions.RemoveAt(randNum);
+    return _question;
   }
 
   public void StartReflecting(){
@@ -58,9 +66,10 @@ class ReflectingActivity: Activity{
     Console.Clear();
     Stopwatch sw = new();
     sw.Start();
-    while(sw.Elapsed.TotalMilliseconds < _activityTime){
+    while(sw.Elapsed.TotalMilliseconds < GetActivityTime()){
       Console.WriteLine(GetRandomQuestion());
-      Thread.Sleep(10000);
+      ShowPauseAnimation(10);
+      Console.Clear();
     }
     sw.Stop();
   }
@@ -77,7 +86,7 @@ class ReflectingActivity: Activity{
     StartReflecting();
     RunQuestions();
     Console.WriteLine($"\n{DisplayEndingMessage()}");
-    Thread.Sleep(5000);
+    ShowPauseAnimation(5);
     Console.Clear();
   }
 }

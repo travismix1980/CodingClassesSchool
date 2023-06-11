@@ -1,16 +1,19 @@
 class Animation{
   private char[] _spinnerFrames = {'|',  '/', '-', '\\', '|', '/', '-', '\\'};
-  private List<int> _countDown = new List<int>();
 
   public Animation(){
   }
 
-  public void SetCountdown(int max){
-    // incase its already holding something
-    _countDown.Clear();
-    for(int i  = 1; i < max; i++){
-      _countDown.Add(i);
+
+  public void PauseAnimation(int pauseTime){
+    for(int i = 0; i < pauseTime; i++){
+      Console.Write(".");
+      Thread.Sleep(1000);
     }
+    int currentCursorLine = Console.CursorTop;
+    Console.SetCursorPosition(0, Console.CursorTop);
+    Console.Write(new string(' ', Console.BufferWidth));
+    Console.SetCursorPosition(0, currentCursorLine);
   }
 
   public void PlayCountdownAnimation(int maxCount, int frameTime=1000){

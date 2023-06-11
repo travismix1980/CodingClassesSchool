@@ -36,7 +36,7 @@ public ListingActivity(){
   public void Listing(){
     Stopwatch sw = new();
     sw.Start();
-    while(sw.Elapsed.TotalMilliseconds < _activityTime){
+    while(sw.Elapsed.TotalMilliseconds < GetActivityTime()){
       Console.Write("> ");
       Console.ReadLine();
       _countListings++;
@@ -55,9 +55,9 @@ public ListingActivity(){
     Console.WriteLine(); // spacing
     StartListing();
     Listing();
-    SetEndingMessage($"Congrats you were able to list {_countListings} items in {_activityTime / 1000} seconds thats not so bad is it?");
+    SetEndingMessage($"Congrats you were able to list {_countListings} items in {GetActivityTime() / 1000} seconds thats not so bad is it?");
     Console.WriteLine($"\n{DisplayEndingMessage()}");
-    Thread.Sleep(5000);
+    ShowPauseAnimation(5);
     Console.Clear();
   }
 }
