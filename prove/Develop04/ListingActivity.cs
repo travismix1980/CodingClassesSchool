@@ -45,19 +45,10 @@ public ListingActivity(){
   }
 
   public void RunListing(){
-    Console.Clear();
-    Console.WriteLine($"\n{DisplayStartingMessage()}");
-    Console.WriteLine($"\n{DisplayDescriptionMessage()}");
-    SetActivityTimeInMilliseconds();  // set timer with base _activityTime
-    Console.Clear();
-    Console.WriteLine("Get ready...");
-    ShowSpinner(500, 5000); // play animation for 5 seconds
-    Console.WriteLine(); // spacing
+    StartActivity();
     StartListing();
     Listing();
     SetEndingMessage($"Congrats you were able to list {_countListings} items in {GetActivityTime() / 1000} seconds thats not so bad is it?");
-    Console.WriteLine($"\n{DisplayEndingMessage()}");
-    ShowPauseAnimation(5);
-    Console.Clear();
+    EndActivity();
   }
 }

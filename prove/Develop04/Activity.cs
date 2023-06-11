@@ -60,4 +60,21 @@ public Activity(){}
     Animation a = new();
     a.PauseAnimation(pauseTime);
   }
+
+  protected void StartActivity(){
+    Console.Clear();
+    Console.WriteLine($"\n{DisplayStartingMessage()}");
+    Console.WriteLine($"\n{DisplayDescriptionMessage()}");
+    SetActivityTimeInMilliseconds();  // set timer with base _activityTime
+    Console.Clear();
+    Console.WriteLine("Get ready...");
+    ShowSpinner(500, 5000); // play animation for 5 seconds
+    Console.WriteLine(); // spacing
+  }
+
+  protected void EndActivity(){
+    Console.WriteLine($"\n{DisplayEndingMessage()}");
+    ShowPauseAnimation(5);
+    Console.Clear();
+  }
 }
