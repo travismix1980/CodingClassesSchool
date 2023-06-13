@@ -11,6 +11,7 @@ class Program
             Console.WriteLine(s.GetType());
             Console.WriteLine(s.GetColor());
             Console.WriteLine(s.GetArea());
+            Console.WriteLine(); // spacing
         }
     }
 }
