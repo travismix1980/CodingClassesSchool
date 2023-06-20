@@ -1,8 +1,4 @@
-/// <summary>
-/// This class is for creating simple goals and basically just inherits everything
-/// from the base class Goal to work.
-/// </summary>
-public class SimpleGoal : IGoal
+public class EternalGoal : IGoal
 {
   private int _goalPoints;
   public string GoalName { get; set; }
