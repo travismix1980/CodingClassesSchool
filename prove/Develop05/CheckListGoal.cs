@@ -1,4 +1,4 @@
-public class ChecklistGoal : IGoal, IChecklist
+public class ChecklistGoal : IChecklist
 {
   private int _goalPoints;
   private int _accomplishedTimes;
