@@ -5,12 +5,12 @@ class Program
     static void Main(string[] args)
     {
         Menu m = new();
-        int menuChoice = m.ShowMenu();
         Score s = new();
-        GotoMenuChoice(menuChoice);
+        int menuChoice = m.ShowMenu();
+        GotoMenuChoice(menuChoice, s);
     }
 
-    static void GotoMenuChoice(int choice){
+    static void GotoMenuChoice(int choice, Score score){
         switch(choice){
             case 1:
                 Console.WriteLine("You chose Create New Goal");
@@ -28,6 +28,9 @@ class Program
                 Console.WriteLine("you chose Record Event");
                 break;
             case 6:
+                Console.WriteLine($"You have {score.GetScore()} points");
+                break;
+            case 7:
                 Console.WriteLine("You chose quit");
                 break;
             default:

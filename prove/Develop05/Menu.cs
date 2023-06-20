@@ -14,6 +14,7 @@ public class Menu{
     _menuOptions.Add("Save Goals");
     _menuOptions.Add("Load Goals");
     _menuOptions.Add("Record Event");
+    _menuOptions.Add("Show Total Points");
     _menuOptions.Add("Quit");
   }
 
