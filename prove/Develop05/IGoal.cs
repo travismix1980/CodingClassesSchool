@@ -1,14 +1,8 @@
-/// <summary>
-/// added this one just to throw in an interface not that it was needed
-/// </summary>
-interface IGoal
-{
-  string GoalName { get; set; }
-  string GoalDescription { get; set; }
-  int GoalPoints { get; set; }
-
-  void CreateGoal();
+interface IGoal{
+  public string GoalName { get; set; }
+  public string GoalDescription { get; set; }
+  public int GoalPoints { get; set; }
+  public bool IsComplete { get; set; }
   void RecordGoal();
-  void SaveGoal();
-  void LoadGoal();
+  string SaveToString();
 }
