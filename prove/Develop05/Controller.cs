@@ -1,6 +1,7 @@
 public class Controller{
   MainMenu mm = new();
   GoalMenu gm = new();
+  Score s = new();
   private List<IGoal> _goalsList = new();
 
   public bool RunMainMenu(){
@@ -33,9 +34,11 @@ public class Controller{
         return true;
       // record goal
       case 5:
+        RecordGoal();
         return true;
       // Show Total points
       case 6:
+        Console.WriteLine($"Your score is {s.GetScore()}");
         return true;
       // quit
       case 7:
@@ -114,5 +117,28 @@ public class Controller{
       Console.WriteLine(goal.SaveString);
       Console.WriteLine(); // spacing
     }
+  }
+
+  public void RecordGoal(){
+    int count = 1;
+    foreach(IGoal goal in _goalsList){
+      if(goal.IsComplete){
+        Console.WriteLine($"{count} [x]{goal.GetType()} {goal.GoalName}");
+      } else {
+        Console.WriteLine($"{count} [ ]{goal.GetType()} {goal.GoalName}");
+      }
+      count++;
+    }
+    Console.WriteLine(); // spacing
+
+    Console.Write("Please chose a goal to record complete: ");
+    int recordChoice = Convert.ToInt32(Console.ReadLine());
+    _goalsList[recordChoice - 1].RecordGoal();
+
+    // add points to score
+    s.SetScore(_goalsList[recordChoice - 1].GoalPoints);
+
+    // show points
+    Console.WriteLine($"Total Points: {s.GetScore()}");
   }
 }
