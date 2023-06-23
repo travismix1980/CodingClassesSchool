@@ -2,7 +2,6 @@ public class MainMenu : Menu{
   /// <summary>
   /// a list containing all the menu options
   /// </summary>
-  List<string> _menuOptions;
 
 /// <summary>
 /// Creates _menuOptions and fills it with menu options
@@ -16,5 +15,10 @@ public class MainMenu : Menu{
     _menuOptions.Add("Record Goal");
     _menuOptions.Add("Show Total Points");
     _menuOptions.Add("Quit");
+  }
+
+  public override void ShowMenu()
+  {
+    base.ShowMenu();
   }
 }

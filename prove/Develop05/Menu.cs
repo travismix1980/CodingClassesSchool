@@ -1,6 +1,8 @@
 public abstract class Menu
 {
-  List<string> _menuOptions;
+  public List<string> _menuOptions = new();
+  public Menu(){
+  }
 
   /// <summary>
   /// outputs the menu to the console
