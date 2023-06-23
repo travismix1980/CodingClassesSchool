@@ -13,7 +13,7 @@ public class MainMenu : Menu{
     _menuOptions.Add("List Goals");
     _menuOptions.Add("Save Goals");
     _menuOptions.Add("Load Goals");
-    _menuOptions.Add("Record Event");
+    _menuOptions.Add("Record Goal");
     _menuOptions.Add("Show Total Points");
     _menuOptions.Add("Quit");
   }

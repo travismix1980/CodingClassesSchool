@@ -1,8 +1,9 @@
 interface IGoal{
-  public string GoalName { get; set; }
-  public string GoalDescription { get; set; }
-  public int GoalPoints { get; set; }
-  public bool IsComplete { get; set; }
+  string GoalName { get; set; }
+  string GoalDescription { get; set; }
+  int GoalPoints { get; set; }
+  bool IsComplete { get; set; }
+  string SaveString { get; set; }
   void RecordGoal();
-  string SaveToString();
+  void SaveToString();
 }

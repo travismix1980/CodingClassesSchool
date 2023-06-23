@@ -4,20 +4,22 @@ public abstract class Goal : IGoal
   public string GoalDescription { get; set; }
   public int GoalPoints { get; set; }
   public bool IsComplete { get; set; } = false;
+  public string SaveString { get; set; }
 
-  public Goal(string name, string description, int points){
+  public Goal(string name, string description, int points)
+  {
     GoalName = name;
     GoalDescription = description;
     GoalPoints = points;
   }
 
-  public void RecordGoal()
+  public virtual void RecordGoal()
   {
-    throw new NotImplementedException();
+    IsComplete = true;
   }
 
-  public string SaveToString()
+  public virtual void SaveToString()
   {
-    throw new NotImplementedException();
+    SaveString = $"Goal\\{GoalName}\\{GoalDescription}\\{GoalPoints}\\{IsComplete}";
   }
 }

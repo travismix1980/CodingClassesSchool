@@ -6,7 +6,7 @@ public abstract class Menu
   /// outputs the menu to the console
   /// </summary>
   /// <returns>(int) the user choice from the menu</returns>
-  public virtual int ShowMenu()
+  public virtual void ShowMenu()
   {
     int count = 1;
     foreach (string mo in _menuOptions)
@@ -15,7 +15,14 @@ public abstract class Menu
       count++;
     }
     Console.WriteLine(); // spacing
-    Console.Write("Select a choice from the menu: ");
+    Console.Write("Enter your choice: ");
+  }
+
+/// <summary>
+/// Reads and returns the userchoice from the menu
+/// </summary>
+/// <returns></returns>
+  public virtual int GetMenuChoice(){
     return Convert.ToInt32(Console.ReadLine());
   }
 }
