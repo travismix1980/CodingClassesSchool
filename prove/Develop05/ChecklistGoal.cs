@@ -3,9 +3,9 @@ public class ChecklistGoal : Goal
   public int AccomplishTimes { get; set; }
   public int AccomplishTimesForBonus { get; set; }
   public int BonusPoints { get; set; }
-  public ChecklistGoal(string name, string description, int points, int accomplishTimesForBonus, int bonusPoints) : base(name, description, points)
+  public ChecklistGoal(string name, string description, int points, int accomplishTimesForBonus, int bonusPoints, bool complete=false, int accomplishTimes=0) : base(name, description, points, complete)
   {
-    AccomplishTimes = 0;
+    AccomplishTimes = accomplishTimes;
     AccomplishTimesForBonus = accomplishTimesForBonus;
     BonusPoints = bonusPoints;
   }

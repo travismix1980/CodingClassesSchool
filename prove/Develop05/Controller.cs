@@ -2,7 +2,8 @@ public class Controller{
   MainMenu mm = new();
   GoalMenu gm = new();
   Score s = new();
-  private List<IGoal> _goalsList = new();
+  GoalIO gio = new();
+  private List<Goal> _goalsList = new();
 
   public bool RunMainMenu(){
     mm.ShowMenu();
@@ -28,9 +29,17 @@ public class Controller{
         return true;
       // save goals
       case 3:
+      Console.Write("Enter a filename to save your goals as minus any extension(.txt): ");
+      string saveFileName = Console.ReadLine();
+      gio.SaveGoals(saveFileName, _goalsList, s);
         return true;
       // load goals
       case 4:
+        Console.Write("Enter a filename to load minus any extension(.txt): ");
+        string loadFileName = Console.ReadLine();
+        // clear out our list before we load the new one
+        _goalsList.Clear();
+        _goalsList.AddRange(gio.LoadGoals(loadFileName, s));
         return true;
       // record goal
       case 5:
@@ -79,7 +88,7 @@ public class Controller{
     string description = Console.ReadLine();
     Console.Write("How many points is your goal worth: ");
     int points = Convert.ToInt32(Console.ReadLine());
-    IGoal goal = new SimpleGoal(name, description, points);
+    Goal goal = new SimpleGoal(name, description, points);
     _goalsList.Add(goal);
     goal.SaveToSaveString();
     goal.SaveToListString();
@@ -92,7 +101,7 @@ public class Controller{
     string description = Console.ReadLine();
     Console.Write("How many points is your goal worth: ");
     int points = Convert.ToInt32(Console.ReadLine());
-    IGoal goal = new EternalGoal(name, description, points);
+    Goal goal = new EternalGoal(name, description, points);
     _goalsList.Add(goal);
     goal.SaveToSaveString();
     goal.SaveToListString();
@@ -109,7 +118,7 @@ public class Controller{
     int accomplishTimesForBonus = Convert.ToInt32(Console.ReadLine());
     Console.Write($"How many bonus points is the goal worth if you complete it all {accomplishTimesForBonus} times: ");
     int bonusPoints = Convert.ToInt32(Console.ReadLine());
-    IGoal goal = new ChecklistGoal(name, description, points, accomplishTimesForBonus, bonusPoints);
+    Goal goal = new ChecklistGoal(name, description, points, accomplishTimesForBonus, bonusPoints);
     _goalsList.Add(goal);
     goal.SaveToSaveString();
     goal.SaveToListString();

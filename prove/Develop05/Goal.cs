@@ -7,11 +7,12 @@ public abstract class Goal : IGoal
   public string SaveString { get; set; }
   public string ListString { get; set; }
 
-  public Goal(string name, string description, int points)
+  public Goal(string name, string description, int points, bool complete=false)
   {
     GoalName = name;
     GoalDescription = description;
     GoalPoints = points;
+    IsComplete = complete;
   }
 
   public virtual void RecordGoal()
