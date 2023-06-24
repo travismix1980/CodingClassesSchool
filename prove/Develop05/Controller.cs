@@ -6,6 +6,7 @@ public class Controller{
   private List<Goal> _goalsList = new();
 
   public bool RunMainMenu(){
+    Console.WriteLine(); // spacing
     mm.ShowMenu();
     int menuChoice = mm.GetMenuChoice();
     return GoToMainMenuChoice(menuChoice);
@@ -21,20 +22,24 @@ public class Controller{
     switch(choice){
       // create new goal
       case 1:
+        Console.WriteLine(); // spacing
         RunGoalMenu();
         return true;
       // list goals
       case 2:
+        Console.WriteLine(); // spacing
         ListCurrentGoals();
         return true;
       // save goals
       case 3:
-      Console.Write("Enter a filename to save your goals as minus any extension(.txt): ");
-      string saveFileName = Console.ReadLine();
-      gio.SaveGoals(saveFileName, _goalsList, s);
+        Console.WriteLine(); // spacing
+        Console.Write("Enter a filename to save your goals as minus any extension(.txt): ");
+        string saveFileName = Console.ReadLine();
+        gio.SaveGoals(saveFileName, _goalsList, s);
         return true;
       // load goals
       case 4:
+        Console.WriteLine(); // spacing
         Console.Write("Enter a filename to load minus any extension(.txt): ");
         string loadFileName = Console.ReadLine();
         // clear out our list before we load the new one
@@ -43,17 +48,21 @@ public class Controller{
         return true;
       // record goal
       case 5:
+        Console.WriteLine(); // spacing
         RecordGoal();
         return true;
       // Show Total points
       case 6:
+        Console.WriteLine(); // spacing
         Console.WriteLine($"Your score is {s.GetScore()}");
         return true;
       // quit
       case 7:
-      Console.WriteLine("Thanks for using the Eternal Goal Tracker");
+        Console.WriteLine(); // spacing
+        Console.WriteLine("Thanks for using the Eternal Goal Tracker");
         return false;
       default:
+        Console.WriteLine(); // spacing
         Console.WriteLine("Invalid choice please try again");
         RunMainMenu();
         return true;
@@ -82,6 +91,7 @@ public class Controller{
   }
 
   public void CreateSimpleGoal(){
+    Console.WriteLine(); //spacing
     Console.Write("What is the name of your Simple goal: ");
     string name = Console.ReadLine();
     Console.Write("Enter a description for your goal: ");
@@ -95,6 +105,7 @@ public class Controller{
   }
 
   public void CreateEternalGoal(){
+    Console.WriteLine(); //spacing
     Console.Write("What is the name of your Eternal goal: ");
     string name = Console.ReadLine();
     Console.Write("Enter a description for your goal: ");
@@ -108,6 +119,7 @@ public class Controller{
   }
 
   public void CreateChecklistGoal(){
+    Console.WriteLine(); //spacing
     Console.Write("What is the name of your Checklist goal: ");
     string name = Console.ReadLine();
     Console.Write("Enter a description for your goal: ");
@@ -132,6 +144,7 @@ public class Controller{
   }
 
   public void RecordGoal(){
+    Console.WriteLine(); //spacing
     int count = 1;
     foreach(IGoal goal in _goalsList){
       Console.WriteLine($"{count} {goal.ListString}");
