@@ -81,7 +81,8 @@ public class Controller{
     int points = Convert.ToInt32(Console.ReadLine());
     IGoal goal = new SimpleGoal(name, description, points);
     _goalsList.Add(goal);
-    goal.SaveToString();
+    goal.SaveToSaveString();
+    goal.SaveToListString();
   }
 
   public void CreateEternalGoal(){
@@ -93,7 +94,8 @@ public class Controller{
     int points = Convert.ToInt32(Console.ReadLine());
     IGoal goal = new EternalGoal(name, description, points);
     _goalsList.Add(goal);
-    goal.SaveToString();
+    goal.SaveToSaveString();
+    goal.SaveToListString();
   }
 
   public void CreateChecklistGoal(){
@@ -109,35 +111,42 @@ public class Controller{
     int bonusPoints = Convert.ToInt32(Console.ReadLine());
     IGoal goal = new ChecklistGoal(name, description, points, accomplishTimesForBonus, bonusPoints);
     _goalsList.Add(goal);
-    goal.SaveToString();
+    goal.SaveToSaveString();
+    goal.SaveToListString();
   }
 
   public void ListCurrentGoals(){
+    Console.WriteLine(); // spacing
     foreach(IGoal goal in _goalsList){
-      Console.WriteLine(goal.SaveString);
-      Console.WriteLine(); // spacing
+      Console.WriteLine(goal.ListString);
     }
   }
 
   public void RecordGoal(){
     int count = 1;
     foreach(IGoal goal in _goalsList){
-      if(goal.IsComplete){
-        Console.WriteLine($"{count} [x]{goal.GetType()} {goal.GoalName}");
-      } else {
-        Console.WriteLine($"{count} [ ]{goal.GetType()} {goal.GoalName}");
-      }
+      Console.WriteLine($"{count} {goal.ListString}");
       count++;
     }
     Console.WriteLine(); // spacing
 
     Console.Write("Please chose a goal to record complete: ");
     int recordChoice = Convert.ToInt32(Console.ReadLine());
-    _goalsList[recordChoice - 1].RecordGoal();
-
-    // add points to score
-    s.SetScore(_goalsList[recordChoice - 1].GoalPoints);
-
+    if(_goalsList[recordChoice -1].IsComplete){
+      Console.WriteLine("That goal is already completed and cannot be completed further");
+    } else {
+      _goalsList[recordChoice - 1].RecordGoal();
+      s.SetScore(_goalsList[recordChoice - 1].GoalPoints);
+      if(_goalsList[recordChoice - 1].GetType().ToString() == "ChecklistGoal"){
+        if(_goalsList[recordChoice - 1].IsComplete){
+          ChecklistGoal goal = (ChecklistGoal) _goalsList[recordChoice - 1];
+          s.SetScore(goal.BonusPoints);
+          Console.WriteLine($"Congrats you earned {goal.BonusPoints} bonus points!");
+        }
+      }
+      _goalsList[recordChoice - 1].SaveToListString();
+      _goalsList[recordChoice - 1].SaveToSaveString();
+    }
     // show points
     Console.WriteLine($"Total Points: {s.GetScore()}");
   }

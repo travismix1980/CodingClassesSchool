@@ -10,33 +10,27 @@ public class ChecklistGoal : Goal
     BonusPoints = bonusPoints;
   }
 
-  public override void SaveToString()
+  public override void SaveToSaveString()
   {
     SaveString = $"ChecklistGoal\\{GoalName}\\{GoalDescription}\\{GoalPoints}\\{AccomplishTimes}\\{AccomplishTimesForBonus}\\{BonusPoints}\\{IsComplete}";
   }
 
+  public override void SaveToListString(){
+    string checkbox = "";
+    if(IsComplete){
+      checkbox = "[x]";
+    } else {
+      checkbox = "[ ]";
+    }
+    ListString = $"{checkbox} {GoalName} ({GoalDescription}) -- Currently Completed: {AccomplishTimes}/{AccomplishTimesForBonus}";
+  }
+
   public override void RecordGoal(){
     if(AccomplishTimes < AccomplishTimesForBonus){
-      AccomplishTimes = AccomplishTimes + 1;
-    } else {
+      AccomplishTimes++;
+    }
+    if(AccomplishTimes == AccomplishTimesForBonus) {
       IsComplete = true;
     }
-  }
-
-/// <summary>
-/// Checks to see if goal qualifies for bonus points
-/// </summary>
-  public void CheckForBonus(){
-    if(AccomplishTimes >= AccomplishTimesForBonus){
-      ApplyBonus();
-    }
-  }
-
-/// <summary>
-/// returns true if we need to add bonus points to score
-/// </summary>
-/// <returns>bool</returns>
-  public bool ApplyBonus(){
-    return true;
   }
 }

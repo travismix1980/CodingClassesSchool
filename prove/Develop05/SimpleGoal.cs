@@ -4,7 +4,7 @@ public class SimpleGoal : Goal
   {
   }
 
-  public override void SaveToString(){
+  public override void SaveToSaveString(){
     SaveString = $"SimpleGoal\\{GoalName}\\{GoalDescription}\\{GoalPoints}\\{IsComplete}";
   }
 }

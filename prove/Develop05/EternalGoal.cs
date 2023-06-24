@@ -4,7 +4,7 @@ public class EternalGoal : Goal
   {
   }
 
-  public override void SaveToString()
+  public override void SaveToSaveString()
   {
     SaveString = $"EternalGoal\\{GoalName}\\{GoalDescription}\\{GoalPoints}\\{IsComplete}";
   }
