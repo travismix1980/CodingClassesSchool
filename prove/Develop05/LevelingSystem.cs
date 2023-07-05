@@ -3,7 +3,7 @@ public class LevelingSystem
 {
   public int CurrentLevel { get; set; }
   public double NextLevelPoints { get; set; }
-  public double LastLevelPoints { get; set; }
+  public double LastLevelPoints { get; protected set; }
   const string FILENAME = "levelfile.txt";
 
   public LevelingSystem(int level)
