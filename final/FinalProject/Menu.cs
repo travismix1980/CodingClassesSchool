@@ -13,6 +13,7 @@ public class Menu{
   protected string _menu;
 
   public Menu(){
+    _menuOptions = new();
     _menu = "";
   }
 

@@ -1,6 +1,5 @@
 public class ATMMenu : Menu{
   public ATMMenu(){
-    _menuOptions = new();
     _menuOptions.Add("Check Balance");
     _menuOptions.Add("Deposit Funds");
     _menuOptions.Add("Withdraw Funds");
