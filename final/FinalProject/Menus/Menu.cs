@@ -10,7 +10,7 @@ public class Menu{
   /// created in the ConstructMenu method
   /// and output in the
   /// </summary>
-  protected string _menu;
+  private string _menu;
 
   public Menu(){
     _menuOptions = new();
@@ -28,8 +28,14 @@ public class Menu{
 /// puts together our menu in a string for outputting
 /// </summary>
   public void ConstructMenu(){
-    for(int i = 1; i < _menuOptions.Count(); i++){
-      _menu += $"{i}) {_menuOptions[i]} \n";
+    for(int i = 0; i < _menuOptions.Count(); i++){
+      _menu += $"{i + 1}) {_menuOptions[i]} \n";
     }
+  }
+
+  public int GetMenuChoice(){
+    Console.Write("Please Enter Your Choice: ");
+    int menuChoice = Convert.ToInt32(Console.ReadLine());
+    return menuChoice;
   }
 }

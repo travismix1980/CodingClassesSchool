@@ -3,5 +3,6 @@ public class SaveMenu : Menu{
     _menuOptions.Add("Save Game");
     _menuOptions.Add("Load Game");
     _menuOptions.Add("Exit Save Menu");
+    base.ConstructMenu();
   }
 }

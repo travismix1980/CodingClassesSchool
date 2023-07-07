@@ -4,5 +4,6 @@ public class ATMMenu : Menu{
     _menuOptions.Add("Deposit Funds");
     _menuOptions.Add("Withdraw Funds");
     _menuOptions.Add("Exit ATM Menu");
+    base.ConstructMenu();
   }
 }
