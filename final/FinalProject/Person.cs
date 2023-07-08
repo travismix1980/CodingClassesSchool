@@ -13,8 +13,8 @@ public abstract class Person{
 
   public void CalcHandValue(){}
 
-  public virtual void SetName(){}
+  public void SetName(string name){ _name = name; }
 
-  public string GetName(string name){ return ""; }
+  public string GetName(){ return _name; }
 
 }

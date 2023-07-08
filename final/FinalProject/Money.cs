@@ -3,7 +3,7 @@ public class Money{
 
   public Money(double moneyOnPerson){}
 
-  public double GetMoneyOnPerson(){ return 0.0; }
+  public double GetMoneyOnPerson(){ return _moneyOnPerson; }
 
-  public void SetMoneyOnPerson(double money){}
+  public void SetMoneyOnPerson(double money){ _moneyOnPerson += money; }
 }

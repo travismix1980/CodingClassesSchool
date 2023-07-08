@@ -3,7 +3,9 @@ public class ATM{
 
   public ATM(){}
 
-  public double GetMoneyStored(){ return 0.0; }
+  public double GetMoneyStored(){ return _moneyStored; }
 
-  public void SetMoneyStored(double money){}
+  public void SetMoneyStored(double money){
+    _moneyStored += money;
+  }
 }
