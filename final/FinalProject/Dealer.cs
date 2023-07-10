@@ -14,7 +14,10 @@ public class Dealer : Person{
     }
   }
 
-  public void Deal(){}
+// TODO: Make the dealer able to deal a single card
+  public void Deal(){
+    Console.WriteLine("Dealer deals everyone a card");
+  }
 
   public void Shuffle(){
     foreach(var deck in _decks){
@@ -25,13 +28,18 @@ public class Dealer : Person{
     }
   }
 
+//TODO: Finish Dealer Hit and Stand once Dealing Cards is finished
   public override void Hit()
   {
-
+    if(_handValue < 17){
+      Console.WriteLine("Dealer Hits");
+    }
   }
 
   public override void Stand()
   {
-
+    if(_handValue > 16){
+      Console.WriteLine("Dealer Stands");
+    }
   }
 }

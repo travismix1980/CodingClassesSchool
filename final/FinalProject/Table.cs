@@ -11,5 +11,7 @@ public class Table{
     return _numOfDecks;
   }
 
-  public void PlayRound(){}
+  public void PlayBlackJack(){
+    Console.WriteLine("Playing BlackJack");
+  }
 }
