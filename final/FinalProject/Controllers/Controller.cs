@@ -9,7 +9,8 @@ public class Controller{
         Console.WriteLine("Play a round of BlackJack");
         break;
       case 2:
-        Console.WriteLine("Read the Rules");
+        ShowRules sr = new();
+        sr.ShowTheRules();
         break;
       case 3:
         Console.WriteLine("Visit the ATM Machine");
