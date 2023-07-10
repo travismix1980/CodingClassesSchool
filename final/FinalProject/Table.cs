@@ -1,14 +1,15 @@
 public class Table{
-  private int _difficulty; // number of decks in play
+  private int _numOfDecks; // number of decks in play
   private int _minBet; // the minimum bet for the table and also plays into difficulty
 
-  public Table(int minBet){
+  public Table(int minBet, int numOfDecks){
     _minBet = minBet;
+    _numOfDecks = numOfDecks;
   }
 
-  public void SetDifficulty(){}
+  public int GetNumOfDecks(){
+    return _numOfDecks;
+  }
 
   public void PlayRound(){}
-
-  public void SimulateRound(){}  // what happens while the player is at the ATM
 }

@@ -7,7 +7,6 @@ public class Card{
     _suit = suit;
     _pips = pips;
     _pipsValue = new Dictionary<string, int>();
-    _pipsValue.Add("One", 1);
     _pipsValue.Add("Two", 2);
     _pipsValue.Add("Three", 3);
     _pipsValue.Add("Four", 4);
@@ -27,5 +26,13 @@ public class Card{
     } else {
       return 11;
     }
+  }
+
+  public string GetCardSuit(){
+    return _suit;
+  }
+
+  public string GetCardValue(){
+    return _pips;
   }
 }
