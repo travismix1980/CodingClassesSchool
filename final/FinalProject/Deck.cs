@@ -64,4 +64,9 @@ public class Deck{
   public List<Card> GetDeck(){
     return _cards;
   }
+
+  public void SetDeck(List<Card> cards){
+    _cards.Clear();
+    _cards = cards;
+  }
 }

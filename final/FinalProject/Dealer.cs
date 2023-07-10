@@ -18,18 +18,10 @@ public class Dealer : Person{
 
   public void Shuffle(){
     foreach(var deck in _decks){
-      foreach(var card in deck.GetDeck()){
-        Console.Write(card.GetCardSuit());
-        Console.WriteLine($" {card.GetCardValue()}");
-      }
-    }
-    // shuffle
-    // TODO: Get Shuffling to work
-    foreach(var deck in _decks){
-      foreach(var card in deck.GetDeck()){
-        Console.Write(card.GetCardSuit());
-        Console.WriteLine($" {card.GetCardValue()}");
-      }
+      Random rand = new();
+      var d = deck.GetDeck();
+      var sd = d.OrderBy( _ => rand.Next()).ToList();
+      deck.SetDeck(sd);
     }
   }
 
