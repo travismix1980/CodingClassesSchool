@@ -7,8 +7,6 @@ public class Controller
   {
     _menuController = new();
     _showRules = new();
-    //TODO: Move creation of table to case 1 and allow the user to chose num of decks and min bet
-    _table = new(2, 4);
   }
   public void RunBlackJack()
   {
@@ -16,12 +14,18 @@ public class Controller
     bool endflag = true;
     while (endflag)
     {
+      // Clear the console between each new display of the menu
+      Console.Clear();
       // display main menu
       _menuController.DisplayMainMenu();
       switch (_menuController.GetMainMenuChoice())
       {
         case 1:
-          _table.PlayBlackJack();
+          Table table = new();
+          int[] difficulty = table.SetDifficulty();
+          table.SetMinBet(difficulty[0]);
+          table.SetNumOfDecks(difficulty[1]);
+          table.PlayBlackJack();
           break;
         case 2:
           _showRules.ShowTheRules();

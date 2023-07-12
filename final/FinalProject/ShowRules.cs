@@ -51,5 +51,7 @@ public class ShowRules{
 
   public void ShowTheRules(){
     Console.WriteLine(_rules);
+    Console.Write("Please press ENTER to return to the menu: ");
+    while(Console.ReadKey(true).Key != ConsoleKey.Enter){}
   }
 }
