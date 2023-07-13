@@ -23,10 +23,6 @@ public class Table{
     _minBet = minBet;
   }
 
-  public void PlayBlackJack(){
-    Console.WriteLine("Playing BlackJack");
-  }
-
   public int[] SetDifficulty(){
     Console.Clear();
     do{
@@ -50,5 +46,19 @@ public class Table{
     } while(difficulty[0] < 0 && difficulty[0] > 5);
 
     return difficulty;
+  }
+
+    public void PlayBlackJack(){
+    // player places bet greater or equal to min bet
+    // dealer deals two cards to player and dealer with the first dealer card hidden in a one each then repeat fashion
+    // if dealer showing ace card player is offered insurance
+    // if player purchases insurance the dealer checks for blackjack and if blackjack then dealer pays insurance
+    // dealer checks cards for blackjack and if blackjack all players with less than blackjack lose
+    // if both player and dealer have blackjack then we have a push and player gets back initial bet and play restarts
+    // if neither player or dealer have blackjack play continues
+    // player choses hit stand double down split
+    // dealers turn hits with less than 17 otherwise stands
+    // play continues till player stand or either player or dealer bust
+    // end of round pay winners loser loses bet
   }
 }

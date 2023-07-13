@@ -45,7 +45,9 @@ public class ShowRules{
     Beat the Dealer without BlackJack: 1:1
     Tie: Get your original bet back
     Dealer Wins: lose your bet.
-    Insurance: 2:1 Payout if Dealer has BlackJack
+    Insurance: Insurance pays 2:1 on your insurance payment
+               which is half your initial bet.  This allows
+               you to break even if the dealer has BlackJack
     ";
   }
 
