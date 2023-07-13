@@ -35,9 +35,12 @@ public class ShowRules{
 
     Purchase Insurance: If the dealers face up card is an
     Ace you can purchase insurance against the dealers hand
-    being a BlackJack. If the dealer has a blackjack then
-    if you have purchased insurance you get a 2/1 payout
-    instead of losing your bet.
+    being a BlackJack. If the dealer has a blackjack and you
+    have purchased insurance (costs half your initial bet)
+    then you will break even with a 2:1 payment on your
+    insurance even though you will still lose your initial
+    bet.  If the dealer doesn't have blackjack then you lose
+    the insurance payment and continue play.
 
     Payouts
     -----------------------------------------------------
