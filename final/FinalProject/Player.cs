@@ -2,9 +2,14 @@ public class Player : Person{
   private double _currentBet;
   private double _splitCurrentBet;
   Money _playerMoney;
+  private bool _hasDoubledDown;
+  private bool _hasSplit;
   private Card[] _secondHand;
-  public Player(double playerMoney){
+  public Player(double playerMoney, string name){
+    base.SetName(name);
     _playerMoney = new(playerMoney);
+    _hasDoubledDown = false;
+    _hasSplit = false;
   }
 
 // TODO: Finish player
@@ -25,6 +30,7 @@ public class Player : Person{
     } else {
       Console.WriteLine("You cannot afford to double down");
     }
+    _hasDoubledDown = true;
   }
 
   public void Split(){
@@ -44,7 +50,35 @@ public class Player : Person{
     _playerMoney.SetMoneyOnPerson(-_currentBet);
   }
 
-  private double GetCurrentBet(){
+  public double GetCurrentBet(){
     return _currentBet;
+  }
+
+  public bool CanDoubleDown()
+  {
+    if(!_hasDoubledDown){
+      return true;
+    }
+    return false;
+  }
+
+  public bool CanSplit()
+  {
+    if(_hand.Length < 3){
+      if(_hand[0] == _hand[1]){
+        if(!_hasSplit){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  public bool CanPurchaseInsurance(Card dealerFaceUp)
+  {
+    if(dealerFaceUp.GetCardValue() == "Ace"){
+      return true;
+    }
+    return false;
   }
 }
