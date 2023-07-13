@@ -26,7 +26,8 @@ public class ShowRules{
     Split: If you are dealt two matching cards you can chose
     to split them and receive a new card for each one.  You
     must also double your bet to do this.  Each hand is then
-    played separatly.
+    played separatly. This game only allows for one split
+    per round.
 
     BlackJack: A hand total of 21
 
