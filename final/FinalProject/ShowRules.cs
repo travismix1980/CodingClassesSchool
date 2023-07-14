@@ -9,10 +9,12 @@ public class ShowRules{
 
     BlackJack Rules
     -----------------------------------------------------
-    Goal: To get 21 or as close to 21 as possible.  Cards
-    are worth the number on the card.  Jack, Queen, and
-    King are all worth 10 points.  Aces are worth 1 or 11.
-    The dealer can only hit on a 16 or lower.
+    Goal: You start with $100 on you and another $100 in
+    the atm. Your goal is to get 21 or as close to 21 as
+    possible.  Cards are worth the number on the card.
+    Jack, Queen, and King are all worth 10 points.  Aces
+    are worth 1 or 11. The dealer can only hit on a 16 or
+    lower.
 
     Definitions
     -----------------------------------------------------

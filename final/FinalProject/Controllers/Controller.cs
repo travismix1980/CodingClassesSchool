@@ -4,11 +4,19 @@ public class Controller
   ShowRules _showRules;
   Table _table;
   ATMController _atmController;
+  Player _player;
+  Dealer _dealer;
+  int[] _difficulty = new int[2];
   public Controller()
   {
     _menuController = new();
     _showRules = new();
     _atmController = new();
+    Console.Write("What is your name: ");
+    string name = Console.ReadLine();
+    _player = new(100, name);
+
+
   }
   public void RunBlackJack()
   {
@@ -23,10 +31,9 @@ public class Controller
       switch (_menuController.GetMainMenuChoice())
       {
         case 1:
-          Table table = new();
-          int[] difficulty = table.SetDifficulty();
-          table.SetMinBet(difficulty[0]);
-          table.SetNumOfDecks(difficulty[1]);
+          _difficulty = SetDifficulty();
+          _dealer = new(_difficulty[1]);
+          Table table = new(_player, _dealer, _difficulty[0]);
           table.PlayBlackJack();
           break;
         case 2:
@@ -48,5 +55,35 @@ public class Controller
           break;
       }
     }
+  }
+
+  public int[] SetDifficulty(){
+    int[] difficulty = new int[2];
+    Console.Clear();
+    do{
+      Console.WriteLine("1) $2");
+      Console.WriteLine("2) $10");
+      Console.WriteLine("3) $50");
+      Console.WriteLine("4) $100");
+      Console.Write("Please choose a Minimum Bet: ");
+      difficulty[0] = Convert.ToInt32(Console.ReadLine());
+      if(difficulty[0] == 1){difficulty[0] = 2;} 
+      else if(difficulty[0] == 2){difficulty[0] = 10;}
+      else if(difficulty[0] == 3){difficulty[0] = 50;}
+      else if(difficulty[0] == 4){difficulty[0] = 100;}
+    } while(difficulty[0] < 0 && difficulty[0] > 5);
+
+    Console.Clear();
+
+    do{
+      Console.WriteLine("1) 1");
+      Console.WriteLine("2) 2");
+      Console.WriteLine("3) 3");
+      Console.WriteLine("4) 4");
+      Console.Write("Please choose how many decks you want to play with: ");
+      difficulty[1] = Convert.ToInt32(Console.ReadLine());
+    } while(difficulty[1] < 0 && difficulty[1] > 5);
+
+    return difficulty;
   }
 }

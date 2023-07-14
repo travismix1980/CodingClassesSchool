@@ -22,5 +22,4 @@ public abstract class Person{
   protected Card[] GetCurrentCards(){
     return _hand;
   }
-
 }

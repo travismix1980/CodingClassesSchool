@@ -63,4 +63,8 @@ public class Dealer : Person{
       Console.WriteLine("Dealer Stands");
     }
   }
+
+  public int GetNumOfDecks(){
+    return _numOfDecks;
+  }
 }

@@ -12,9 +12,17 @@ public class Player : Person{
     _hasSplit = false;
   }
 
+  public double GetCurrentMoney(){
+    return _playerMoney.GetMoneyOnPerson();
+  }
+
+  public void SetCurrentMoney(double money){
+    _playerMoney.SetMoneyOnPerson(money);
+  }
+
 // TODO: Finish player
   public void GetInsurance(){
-    if(_playerMoney.GetMoneyOnPerson() >= _currentBet / 2){
+    if(_playerMoney.GetMoneyOnPerson() >= (_currentBet / 2)){
       _playerMoney.SetMoneyOnPerson(-(_currentBet / 2));
       Console.WriteLine("You have purchased Insurance. Good Luck...");
     } else {
@@ -52,6 +60,10 @@ public class Player : Person{
 
   public double GetCurrentBet(){
     return _currentBet;
+  }
+
+  public void SetCurrentBet(double bet){
+    _currentBet = bet;
   }
 
   public bool CanDoubleDown()

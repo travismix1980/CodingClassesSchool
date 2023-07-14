@@ -1,60 +1,74 @@
-public class Table{
+public class Table
+{
   private int _numOfDecks; // number of decks in play
   private int _minBet; // the minimum bet for the table and also plays into difficulty
   Player _player;
   Dealer _dealer;
 
-  public Table(){
-    Console.Write("What is your name: ");
-    string name = Console.ReadLine();
-    _player = new(100, name);
-    _dealer = new(_numOfDecks);
+  public Table(Player player, Dealer dealer, int minBet)
+  {
+    _player = player;
+    _dealer = dealer;
+    _minBet = minBet;
+    SetNumOfDecks(dealer.GetNumOfDecks());
   }
 
-  public int GetNumOfDecks(){
+  public int GetNumOfDecks()
+  {
     return _numOfDecks;
   }
 
-  public void SetNumOfDecks(int numOfDecks){
+  public void SetNumOfDecks(int numOfDecks)
+  {
     _numOfDecks = numOfDecks;
   }
 
-  public int GetMinBet(){
+  public int GetMinBet()
+  {
     return _minBet;
   }
 
-  public void SetMinBet(int minBet){
+  public void SetMinBet(int minBet)
+  {
     _minBet = minBet;
   }
 
-  public int[] SetDifficulty(){
-    int[] difficulty = new int[2];
-    Console.Clear();
-    do{
-      Console.WriteLine("1) $2");
-      Console.WriteLine("2) $10");
-      Console.WriteLine("3) $50");
-      Console.WriteLine("4) $100");
-      Console.Write("Please choose a Minimum Bet: ");
-      difficulty[0] = Convert.ToInt32(Console.ReadLine());
-    } while(difficulty[0] < 0 && difficulty[0] > 5);
-
-    Console.Clear();
-
-    do{
-      Console.WriteLine("1) 1");
-      Console.WriteLine("2) 2");
-      Console.WriteLine("3) 3");
-      Console.WriteLine("4) 4");
-      Console.Write("Please choose how many decks you want to play with: ");
-      difficulty[1] = Convert.ToInt32(Console.ReadLine());
-    } while(difficulty[1] < 0 && difficulty[1] > 5);
-
-    return difficulty;
-  }
-
-    public void PlayBlackJack(){
+  public void PlayBlackJack()
+  {
+    _player.SetCurrentBet(0);
+    TableInterface();
+    _player.Bet(_minBet);
+    bool bjEndFlag = true;
+    while (bjEndFlag)
+    {
+      Console.Clear();
       TableInterface();
+      // have dealer deal starting cards
+      Console.WriteLine("What would you like to do? ");
+      char playerChoice = Convert.ToChar(Console.ReadLine().ToLower());
+      if (playerChoice == 'h')
+      {
+        // run player hit
+      }
+      else if (playerChoice == 's')
+      {
+        // run player stand and break
+      }
+      else if (playerChoice == 'd')
+      {
+        // run player double down and break
+      }
+      else if (playerChoice == 'p')
+      {
+        // run player split
+      }
+      else if (playerChoice == 'i')
+      {
+        // run player insurance
+      }
+    }
+    // handle dealer turn
+
     // player places bet greater or equal to min bet
     // dealer deals two cards to player and dealer with the first dealer card hidden in a one each then repeat fashion
     // if dealer showing ace card player is offered insurance
@@ -68,18 +82,25 @@ public class Table{
     // end of round pay winners loser loses bet
   }
 
-  public void TableInterface(){
-    Console.WriteLine($"Min Bet: {_minBet} Number of decks in play: {_numOfDecks} Current Bet: {_player.GetCurrentBet()}");
+  public void TableInterface()
+  {
+    Console.WriteLine($"Min Bet: {_minBet}  Number of decks in play: {_numOfDecks}  Current Bet: ${_player.GetCurrentBet()}  Current Money on you: ${_player.GetCurrentMoney()}");
     Console.Write("(h)it (s)tand ");
-    if(_player.CanDoubleDown()){
+    if (_player.CanDoubleDown())
+    {
       Console.Write("(d)ouble down ");
     }
-    if(_player.CanSplit()){
-      Console.WriteLine("s(p)lit ");
+    if (_player.CanSplit())
+    {
+      Console.Write("s(p)lit ");
     }
-    if(_player.CanPurchaseInsurance(new Card("Hearts", "Ace"))){
-      Console.WriteLine("(p)urchase insurance");
+    if (_player.CanPurchaseInsurance(new Card("Hearts", "Ace")))
+    {
+      Console.WriteLine("purchase (i)nsurance");
     }
     Console.WriteLine("\n\n");
+
+    // show dealer cards
+    // show player cards
   }
 }
