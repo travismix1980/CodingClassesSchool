@@ -4,7 +4,6 @@ public class Deck{
   public Deck(){
     _cards = new();
     _cards.Add(new Card("Hearts", "Ace"));
-    _cards.Add(new Card("Hearts", "One"));
     _cards.Add(new Card("Hearts", "Two"));
     _cards.Add(new Card("Hearts", "Three"));
     _cards.Add(new Card("Hearts", "Four"));
@@ -18,7 +17,6 @@ public class Deck{
     _cards.Add(new Card("Hearts", "Queen"));
     _cards.Add(new Card("Hearts", "King"));
     _cards.Add(new Card("Diamonds", "Ace"));
-    _cards.Add(new Card("Diamonds", "One"));
     _cards.Add(new Card("Diamonds", "Two"));
     _cards.Add(new Card("Diamonds", "Three"));
     _cards.Add(new Card("Diamonds", "Four"));
@@ -32,7 +30,6 @@ public class Deck{
     _cards.Add(new Card("Diamonds", "Queen"));
     _cards.Add(new Card("Diamonds", "King"));
     _cards.Add(new Card("Clubs", "Ace"));
-    _cards.Add(new Card("Clubs", "One"));
     _cards.Add(new Card("Clubs", "Two"));
     _cards.Add(new Card("Clubs", "Three"));
     _cards.Add(new Card("Clubs", "Four"));
@@ -46,7 +43,6 @@ public class Deck{
     _cards.Add(new Card("Clubs", "Queen"));
     _cards.Add(new Card("Clubs", "King"));
     _cards.Add(new Card("Spades", "Ace"));
-    _cards.Add(new Card("Spades", "One"));
     _cards.Add(new Card("Spades", "Two"));
     _cards.Add(new Card("Spades", "Three"));
     _cards.Add(new Card("Spades", "Four"));

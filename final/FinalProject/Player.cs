@@ -4,7 +4,7 @@ public class Player : Person{
   Money _playerMoney;
   private bool _hasDoubledDown;
   private bool _hasSplit;
-  private bool _hasStood;
+
   private List<Card> _secondHand;
   public Player(double playerMoney, string name){
     base.SetName(name);
@@ -44,25 +44,28 @@ public class Player : Person{
     }
   }
 
-  public void DoubleDown(){
+  public void DoubleDown(Dealer dealer){
     if(_playerMoney.GetMoneyOnPerson() >= _currentBet){
       _playerMoney.SetMoneyOnPerson(-_currentBet);
       _currentBet += _currentBet;
       // player doubles down and receives only one more card
+      AddCardToHand(dealer.Deal());
+      Stand();
+      _handValue = CalcHandValue();
     } else {
       Console.WriteLine("You cannot afford to double down");
     }
     _hasDoubledDown = true;
   }
 
-  public void Split(){
-    if(_playerMoney.GetMoneyOnPerson() >= _currentBet){
-      _playerMoney.SetMoneyOnPerson(-_currentBet);
-      _splitCurrentBet = _currentBet;
-    } else {
-      Console.WriteLine("You cannot afford to split");
-    }
-  }
+  // public void Split(){
+  //   if(_playerMoney.GetMoneyOnPerson() >= _currentBet){
+  //     _playerMoney.SetMoneyOnPerson(-_currentBet);
+  //     _splitCurrentBet = _currentBet;
+  //   } else {
+  //     Console.WriteLine("You cannot afford to split");
+  //   }
+  // }
 
   public void Bet(double minBet){
     do{
@@ -92,32 +95,26 @@ public class Player : Person{
     _hasDoubledDown = doubleDown;
   }
 
-  public bool CanSplit()
-  {
-    if(_cards.Count < 3){
-      if(_cards[0] == _cards[1]){
-        if(!_hasSplit){
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+  // public bool CanSplit()
+  // {
+  //   if(_cards.Count < 3){
+  //     if(_cards[0] == _cards[1]){
+  //       if(!_hasSplit){
+  //         return true;
+  //       }
+  //     }
+  //   }
+  //   return false;
+  // }
 
-  public bool CanPurchaseInsurance(Card dealerFaceUp)
-  {
-    if(dealerFaceUp.GetCardValue() == "Ace"){
-      return true;
-    }
-    return false;
-  }
+  // public bool CanPurchaseInsurance(Card dealerFaceUp)
+  // {
+  //   if(dealerFaceUp.GetCardValue() == "Ace"){
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 
-  public void SetHasStood(bool stand){
-    _hasStood = stand;
-  }
 
-  public bool GetHasStood(){
-    return _hasStood;
-  }
 }

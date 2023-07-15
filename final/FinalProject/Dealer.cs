@@ -50,18 +50,16 @@ public class Dealer : Person{
   }
 
 //TODO: Finish Dealer Hit and Stand once Dealing Cards is finished
-  public override void Hit()
+  public override void Hit(Dealer dealer)
   {
-    if(_handValue < 17){
-      Console.WriteLine("Dealer Hits");
-    }
+    Console.WriteLine("Dealer Hits");
+    AddCardToHand(dealer.Deal());
   }
 
   public override void Stand()
   {
-    if(_handValue > 16){
-      Console.WriteLine("Dealer Stands");
-    }
+    Console.WriteLine("Dealer Stands");
+    Stand();
   }
 
   public int GetNumOfDecks(){
