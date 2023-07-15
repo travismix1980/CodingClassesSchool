@@ -35,7 +35,6 @@ public class Player : Person{
     _playerMoney.SetMoneyOnPerson(money);
   }
 
-// TODO: Finish player
   public void GetInsurance(){
     if(_playerMoney.GetMoneyOnPerson() >= (_currentBet / 2)){
       _playerMoney.SetMoneyOnPerson(-(_currentBet / 2));

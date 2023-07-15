@@ -32,7 +32,6 @@ public abstract class Person{
 
   public string GetName(){ return _name; }
 
-// TODO: finish the ability to get all the current cards
   protected List<Card> GetCurrentCards(){
     return _cards;
   }
