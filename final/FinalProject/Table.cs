@@ -76,6 +76,7 @@ public class Table
         if (_player.GetHasStood())
         {
           bjEndFlag = false;
+          //TODO: REWRITE USING player.DoubleDown()
         } else if (_player.CanDoubleDown())
         {
           if (_player.GetCurrentMoney() >= _player.GetCurrentBet())

@@ -20,6 +20,7 @@ public abstract class Person{
   public virtual void Stand(){}
 
   public int CalcHandValue(){
+    // TODO: Deal with aces
     int total = 0;
     foreach(var c in _cards){
       total += c.GetPipsValue(c);
