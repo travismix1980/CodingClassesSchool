@@ -4,12 +4,27 @@ public class Player : Person{
   Money _playerMoney;
   private bool _hasDoubledDown;
   private bool _hasSplit;
-  private Card[] _secondHand;
+  private bool _hasStood;
+  private List<Card> _secondHand;
   public Player(double playerMoney, string name){
     base.SetName(name);
     _playerMoney = new(playerMoney);
     _hasDoubledDown = false;
     _hasSplit = false;
+    _secondHand = new();
+    _hasStood = false;
+  }
+
+  public void AddCardToSecondHand(Card c){
+    _secondHand.Add(c);
+  }
+
+  public List<Card> GetSecondHand(){
+    return _secondHand;
+  }
+
+  public void RemoveCardFromHand(int handLocation){
+    _cards.RemoveAt(handLocation);
   }
 
   public double GetCurrentMoney(){
@@ -74,10 +89,14 @@ public class Player : Person{
     return false;
   }
 
+  public void SetDoubledDown(bool doubleDown){
+    _hasDoubledDown = doubleDown;
+  }
+
   public bool CanSplit()
   {
-    if(_hand.Length < 3){
-      if(_hand[0] == _hand[1]){
+    if(_cards.Count < 3){
+      if(_cards[0] == _cards[1]){
         if(!_hasSplit){
           return true;
         }
@@ -92,5 +111,14 @@ public class Player : Person{
       return true;
     }
     return false;
+  }
+
+
+  public void SetHasStood(bool stand){
+    _hasStood = stand;
+  }
+
+  public bool GetHasStood(){
+    return _hasStood;
   }
 }

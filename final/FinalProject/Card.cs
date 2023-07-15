@@ -35,4 +35,7 @@ public class Card{
   public string GetCardValue(){
     return _pips;
   }
+  public int GetPipsValue(Card c){
+    return _pipsValue[c.GetCardValue()];
+  }
 }

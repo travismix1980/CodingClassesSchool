@@ -36,35 +36,70 @@ public class Table
   public void PlayBlackJack()
   {
     _player.SetCurrentBet(0);
-    TableInterface();
+    TableInterface(_player, _dealer);
     _player.Bet(_minBet);
     bool bjEndFlag = true;
     while (bjEndFlag)
     {
       Console.Clear();
-      TableInterface();
+      TableInterface(_player, _dealer);
       // have dealer deal starting cards
       Console.WriteLine("What would you like to do? ");
       char playerChoice = Convert.ToChar(Console.ReadLine().ToLower());
       if (playerChoice == 'h')
       {
-        // run player hit
+        if (_player.GetHasStood())
+        {
+          bjEndFlag = false;
+        }
+        _player.AddCardToHand(_dealer.Deal());
+        _player.CalcHandValue();
       }
       else if (playerChoice == 's')
       {
         // run player stand and break
+        _player.SetHasStood(true);
+        bjEndFlag = false;
       }
       else if (playerChoice == 'd')
       {
         // run player double down and break
+        if (_player.CanDoubleDown())
+        {
+          if (_player.GetCurrentMoney() >= _player.GetCurrentBet())
+          {
+            _player.AddCardToHand(_dealer.Deal());
+            _player.CalcHandValue();
+            _player.SetCurrentMoney(-(_player.GetCurrentBet()));
+            _player.SetCurrentBet(_player.GetCurrentBet() * 2);
+            Console.WriteLine("You have doubled down");
+            bjEndFlag = false;
+          }
+        }
       }
-      else if (playerChoice == 'p')
-      {
-        // run player split
-      }
+      // else if (playerChoice == 'p')
+      // {
+      //   if(_player.CanSplit()){
+      //     if(_player.GetCurrentMoney() >= _player.GetCurrentBet()){
+      //       var hand = _player.GetHand();
+      //       _player.AddCardToSecondHand(hand[1]);
+      //       _player.RemoveCardFromHand(1);
+      //       _player.AddCardToHand(_dealer.Deal());
+      //       _player.AddCardToSecondHand(_dealer.Deal());
+      //     }
+      //   }
+      // }
       else if (playerChoice == 'i')
       {
         // run player insurance
+        if(_player.GetCurrentMoney() >= (_player.GetCurrentBet() / 2)){
+          double insurance = (_player.GetCurrentBet() / 2);
+          var dealerHand = _dealer.GetHand();
+          var dealerHiddenCard = dealerHand[0];
+          if(dealerHiddenCard.GetPipsValue(dealerHiddenCard) == 10){
+            _player.SetCurrentMoney(insurance * 2);
+          }
+        }
       }
     }
     // handle dealer turn
@@ -82,19 +117,19 @@ public class Table
     // end of round pay winners loser loses bet
   }
 
-  public void TableInterface()
+  public void TableInterface(Player player, Dealer dealer)
   {
-    Console.WriteLine($"Min Bet: {_minBet}  Number of decks in play: {_numOfDecks}  Current Bet: ${_player.GetCurrentBet()}  Current Money on you: ${_player.GetCurrentMoney()}");
+    Console.WriteLine($"Min Bet: {_minBet}  Number of decks in play: {_numOfDecks}  Current Bet: ${player.GetCurrentBet()}  Current Money on you: ${player.GetCurrentMoney()}");
     Console.Write("(h)it (s)tand ");
-    if (_player.CanDoubleDown())
+    if (player.CanDoubleDown())
     {
       Console.Write("(d)ouble down ");
     }
-    if (_player.CanSplit())
-    {
-      Console.Write("s(p)lit ");
-    }
-    if (_player.CanPurchaseInsurance(new Card("Hearts", "Ace")))
+    // if (_player.CanSplit())
+    // {
+    //   Console.Write("s(p)lit ");
+    // }
+    if (player.CanPurchaseInsurance(dealer.GetHand()[0]))
     {
       Console.WriteLine("purchase (i)nsurance");
     }
