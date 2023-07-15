@@ -19,7 +19,13 @@ public abstract class Person{
 
   public virtual void Stand(){}
 
-  public void CalcHandValue(){}
+  public int CalcHandValue(){
+    int total = 0;
+    foreach(var c in _cards){
+      total += c.GetPipsValue(c);
+    }
+    return total;
+  }
 
   public void SetName(string name){ _name = name; }
 
