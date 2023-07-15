@@ -23,7 +23,14 @@ public abstract class Person{
     // TODO: Deal with aces
     int total = 0;
     foreach(var c in _cards){
+      if(c.GetCardValue() != "Ace"){
       total += c.GetPipsValue(c);
+      }
+    }
+    foreach(var c in _cards){
+      if(c.GetCardValue() == "Ace"){
+        total += c.HandleAces(total);
+      }
     }
     return total;
   }
