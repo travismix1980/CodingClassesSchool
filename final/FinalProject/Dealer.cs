@@ -49,19 +49,6 @@ public class Dealer : Person{
     }
   }
 
-//TODO: Finish Dealer Hit and Stand once Dealing Cards is finished
-  public override void Hit(Dealer dealer)
-  {
-    Console.WriteLine("Dealer Hits");
-    AddCardToHand(dealer.Deal());
-  }
-
-  public override void Stand()
-  {
-    Console.WriteLine("Dealer Stands");
-    Stand();
-  }
-
   public int GetNumOfDecks(){
     return _numOfDecks;
   }

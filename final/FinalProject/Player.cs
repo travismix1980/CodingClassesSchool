@@ -1,58 +1,70 @@
-public class Player : Person{
+public class Player : Person
+{
   private double _currentBet;
-  private double _splitCurrentBet;
   Money _playerMoney;
   private bool _hasDoubledDown;
-  private bool _hasSplit;
 
   private List<Card> _secondHand;
-  public Player(double playerMoney, string name){
+  public Player(double playerMoney, string name)
+  {
     base.SetName(name);
     _playerMoney = new(playerMoney);
     _hasDoubledDown = false;
-    _hasSplit = false;
     _secondHand = new();
     _hasStood = false;
   }
 
-  public void AddCardToSecondHand(Card c){
+  public void AddCardToSecondHand(Card c)
+  {
     _secondHand.Add(c);
   }
 
-  public List<Card> GetSecondHand(){
+  public List<Card> GetSecondHand()
+  {
     return _secondHand;
   }
 
-  public void RemoveCardFromHand(int handLocation){
+  public void RemoveCardFromHand(int handLocation)
+  {
     _cards.RemoveAt(handLocation);
   }
 
-  public double GetCurrentMoney(){
+  public double GetCurrentMoney()
+  {
     return _playerMoney.GetMoneyOnPerson();
   }
 
-  public void SetCurrentMoney(double money){
+  public void SetCurrentMoney(double money)
+  {
     _playerMoney.SetMoneyOnPerson(money);
   }
 
-  public void GetInsurance(){
-    if(_playerMoney.GetMoneyOnPerson() >= (_currentBet / 2)){
+  public void GetInsurance()
+  {
+    if (_playerMoney.GetMoneyOnPerson() >= (_currentBet / 2))
+    {
       _playerMoney.SetMoneyOnPerson(-(_currentBet / 2));
       Console.WriteLine("You have purchased Insurance. Good Luck...");
-    } else {
+    }
+    else
+    {
       Console.WriteLine("You don't have enough money to purchase insurance");
     }
   }
 
-  public void DoubleDown(Dealer dealer){
-    if(_playerMoney.GetMoneyOnPerson() >= _currentBet){
+  public void DoubleDown(Dealer dealer)
+  {
+    if (_playerMoney.GetMoneyOnPerson() >= _currentBet)
+    {
       _playerMoney.SetMoneyOnPerson(-_currentBet);
       _currentBet += _currentBet;
       // player doubles down and receives only one more card
       AddCardToHand(dealer.Deal());
       Stand();
       _handValue = CalcHandValue();
-    } else {
+    }
+    else
+    {
       Console.WriteLine("You cannot afford to double down");
     }
     _hasDoubledDown = true;
@@ -67,31 +79,37 @@ public class Player : Person{
   //   }
   // }
 
-  public void Bet(double minBet){
-    do{
+  public void Bet(double minBet)
+  {
+    do
+    {
       Console.Write("How much would you like to bet? $");
       _currentBet = Convert.ToDouble(Console.ReadLine());
-    }while(_currentBet < minBet || _currentBet > _playerMoney.GetMoneyOnPerson());
+    } while (_currentBet < minBet || _currentBet > _playerMoney.GetMoneyOnPerson());
     _playerMoney.SetMoneyOnPerson(-_currentBet);
   }
 
-  public double GetCurrentBet(){
+  public double GetCurrentBet()
+  {
     return _currentBet;
   }
 
-  public void SetCurrentBet(double bet){
+  public void SetCurrentBet(double bet)
+  {
     _currentBet = bet;
   }
 
   public bool CanDoubleDown()
   {
-    if(!_hasDoubledDown){
+    if (!_hasDoubledDown)
+    {
       return true;
     }
     return false;
   }
 
-  public void SetDoubledDown(bool doubleDown){
+  public void SetDoubledDown(bool doubleDown)
+  {
     _hasDoubledDown = doubleDown;
   }
 

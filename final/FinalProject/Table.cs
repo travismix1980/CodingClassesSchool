@@ -119,34 +119,18 @@ public class Table
         }
       }
       //handle dealer turn
-      // bool dealerEndFlag = true;
-      // while(dealerEndFlag){
-      //   if(_dealer.GetHandValue() < 17){
-      //     _dealer.Hit(_dealer);
-      //     _dealer.HasBusted();
-      //     if(_dealer.GetHasBusted()){
-      //       _dealer.Stand();
-      //       dealerEndFlag = false;
-      //     }
-      //   } else{
-      //     _dealer.Stand();
-      //     _dealer.HasBusted();
-      //     dealerEndFlag = false;
-      //   }
-      // }
-      // bjEndFlag = false;
-
-      // player places bet greater or equal to min bet
-      // dealer deals two cards to player and dealer with the first dealer card hidden in a one each then repeat fashion
-      // if dealer showing ace card player is offered insurance
-      // if player purchases insurance the dealer checks for blackjack and if blackjack then dealer pays insurance
-      // dealer checks cards for blackjack and if blackjack all players with less than blackjack lose
-      // if both player and dealer have blackjack then we have a push and player gets back initial bet and play restarts
-      // if neither player or dealer have blackjack play continues
-      // player choses hit stand double down split
-      // dealers turn hits with less than 17 otherwise stands
-      // play continues till player stand or either player or dealer bust
-      // end of round pay winners loser loses bet
+      bool dealerEndFlag = true;
+      while(dealerEndFlag){
+        TableInterface(_player, _dealer);
+        if(_dealer.GetHandValue() < 17){
+          _dealer.Hit(_dealer);
+          Console.WriteLine("Dealer Hits");
+        } else{
+          Console.WriteLine("Dealer Stands");
+          dealerEndFlag = false;
+        }
+      }
+      // process payouts
     }
   }
 
@@ -158,14 +142,7 @@ public class Table
     if (player.CanDoubleDown())
     {
       Console.Write("(d)ouble down ");
-    // if (_player.CanSplit())
-    // {
-    //   Console.Write("s(p)lit ");
-    // }
-    // if (player.CanPurchaseInsurance(dealer.GetHand()[0]))
-    // {
-    //   Console.WriteLine("purchase (i)nsurance");
-    // }
+    }
     Console.WriteLine("\n\n");
 
     // show dealer cards
