@@ -41,7 +41,6 @@ public class Table
       Console.WriteLine("\n\nNew Round");
       // clear player and dealer hands
       _player.GetHand().Clear();
-      _player.GetSecondHand().Clear();
       _dealer.GetHand().Clear();
       _player.SetHasStood(false);
       _dealer.SetHasStood(false);
@@ -122,6 +121,7 @@ public class Table
       bool dealerEndFlag = true;
       while(dealerEndFlag){
         TableInterface(_player, _dealer);
+        _dealer.SetHandValue(_dealer.CalcHandValue());
         if(_dealer.GetHandValue() < 17){
           _dealer.Hit(_dealer);
           Console.WriteLine("Dealer Hits");
@@ -132,12 +132,32 @@ public class Table
       }
       // process payouts
       ProcessPayouts(_player, _dealer);
+      // add option to get up from table here
     }
   }
 
   public void ProcessPayouts(Player player, Dealer dealer){
+    int payoutRatio = 0;
     Console.WriteLine($"Player hand total {player.GetHandValue()}");
     Console.WriteLine($"Dealer hand total {dealer.GetHandValue()}");
+    if(player.GetHandValue() <= 21 && player.GetHandValue() > dealer.GetHandValue()){
+      player.SetCurrentMoney(player.GetCurrentBet() * 2);
+      payoutRatio += 2;
+    }
+    if(player.GetHandValue() == 21 && player.GetHandValue() > dealer.GetHandValue()){
+      player.SetCurrentMoney(player.GetCurrentBet());
+      payoutRatio += 1;
+    }
+    if(player.GetHandValue() == 21 && dealer.GetHandValue() == 21){
+      player.SetCurrentMoney(player.GetCurrentBet());
+      Console.WriteLine("Hand was a push and player recieved initial bet back");
+    }
+    if(payoutRatio == 2){
+      Console.WriteLine($"Player paid: ${player.GetCurrentBet() * 2}");
+    }
+    if(payoutRatio == 3){
+      Console.WriteLine($"Player paid: ${player.GetCurrentBet() * 3}");
+    }
   }
 
   public void TableInterface(Player player, Dealer dealer)

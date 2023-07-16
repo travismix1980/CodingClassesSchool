@@ -19,15 +19,6 @@ public class Player : Person
     _secondHand.Add(c);
   }
 
-  public List<Card> GetSecondHand()
-  {
-    return _secondHand;
-  }
-
-  public void RemoveCardFromHand(int handLocation)
-  {
-    _cards.RemoveAt(handLocation);
-  }
 
   public double GetCurrentMoney()
   {
@@ -37,19 +28,6 @@ public class Player : Person
   public void SetCurrentMoney(double money)
   {
     _playerMoney.SetMoneyOnPerson(money);
-  }
-
-  public void GetInsurance()
-  {
-    if (_playerMoney.GetMoneyOnPerson() >= (_currentBet / 2))
-    {
-      _playerMoney.SetMoneyOnPerson(-(_currentBet / 2));
-      Console.WriteLine("You have purchased Insurance. Good Luck...");
-    }
-    else
-    {
-      Console.WriteLine("You don't have enough money to purchase insurance");
-    }
   }
 
   public void DoubleDown(Dealer dealer)
@@ -70,19 +48,11 @@ public class Player : Person
     _hasDoubledDown = true;
   }
 
-  // public void Split(){
-  //   if(_playerMoney.GetMoneyOnPerson() >= _currentBet){
-  //     _playerMoney.SetMoneyOnPerson(-_currentBet);
-  //     _splitCurrentBet = _currentBet;
-  //   } else {
-  //     Console.WriteLine("You cannot afford to split");
-  //   }
-  // }
-
   public void Bet(double minBet)
   {
     do
     {
+      Console.WriteLine($"You have ${_playerMoney.GetMoneyOnPerson()}");
       Console.Write("How much would you like to bet? $");
       _currentBet = Convert.ToDouble(Console.ReadLine());
     } while (_currentBet < minBet || _currentBet > _playerMoney.GetMoneyOnPerson());

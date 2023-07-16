@@ -79,4 +79,7 @@ public abstract class Person{
   public int GetHandValue(){
     return _handValue;
   }
+  public void SetHandValue(int value){
+    _handValue = value;
+  }
 }
