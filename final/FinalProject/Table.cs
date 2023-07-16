@@ -107,6 +107,7 @@ public class Table
           {
             _player.DoubleDown(_dealer);
             _player.HasBusted(_player.GetHandValue());
+            bjEndFlag = false;
             if (_player.GetHasBusted())
             {
               bjEndFlag = false;
@@ -119,44 +120,85 @@ public class Table
       }
       //handle dealer turn
       bool dealerEndFlag = true;
-      while(dealerEndFlag){
+      while (dealerEndFlag)
+      {
         TableInterface(_player, _dealer);
         _dealer.SetHandValue(_dealer.CalcHandValue());
-        if(_dealer.GetHandValue() < 17){
+        if (_dealer.GetHandValue() < 17)
+        {
           _dealer.Hit(_dealer);
           Console.WriteLine("Dealer Hits");
-        } else{
+          _dealer.HasBusted(_dealer.GetHandValue());
+        }
+        else
+        {
           Console.WriteLine("Dealer Stands");
           dealerEndFlag = false;
+
         }
       }
       // process payouts
       ProcessPayouts(_player, _dealer);
       // add option to get up from table here
+      Console.Write("Would you like to leave the table? ('y'/'n'): ");
+      char getUp = Convert.ToChar(Console.ReadLine().ToLower());
+      if(getUp == 'y'){
+        bjEndFlag = false;
+        dealerEndFlag = false;
+        gameLoopFlag = false;
+      }
     }
   }
 
-  public void ProcessPayouts(Player player, Dealer dealer){
-    int payoutRatio = 0;
+  public void ProcessPayouts(Player player, Dealer dealer)
+  {
     Console.WriteLine($"Player hand total {player.GetHandValue()}");
     Console.WriteLine($"Dealer hand total {dealer.GetHandValue()}");
-    if(player.GetHandValue() <= 21 && player.GetHandValue() > dealer.GetHandValue()){
-      player.SetCurrentMoney(player.GetCurrentBet() * 2);
-      payoutRatio += 2;
+
+    if (dealer.GetHandValue() < 22 && player.GetHandValue() < 22)
+    {
+      if (player.GetHandValue() > dealer.GetHandValue())
+      {
+        // player wins
+        if (player.GetHandValue() == 21)
+        {
+          // blackjack
+          player.SetCurrentMoney(player.GetCurrentBet() * 3);
+          Console.WriteLine($"Player wins and is paid at 3:1 for ${player.GetCurrentBet() * 3}");
+        }
+        else
+        {
+          // not blackjack
+          player.SetCurrentMoney(player.GetCurrentBet() * 2);
+          Console.WriteLine($"Player wins and is paid at 2:1 for ${player.GetCurrentBet() * 2}");
+        }
+      }
+      else if (player.GetHandValue() < dealer.GetHandValue())
+      {
+        // dealer wins
+        Console.WriteLine("The dealer wins the round");
+      }
+      else if (player.GetHandValue() == dealer.GetHandValue())
+      {
+        // tie / push
+        player.SetCurrentMoney(player.GetCurrentBet());
+        Console.WriteLine("Player pushes the dealer and recieves the initial bet back");
+      }
     }
-    if(player.GetHandValue() == 21 && player.GetHandValue() > dealer.GetHandValue()){
-      player.SetCurrentMoney(player.GetCurrentBet());
-      payoutRatio += 1;
-    }
-    if(player.GetHandValue() == 21 && dealer.GetHandValue() == 21){
-      player.SetCurrentMoney(player.GetCurrentBet());
-      Console.WriteLine("Hand was a push and player recieved initial bet back");
-    }
-    if(payoutRatio == 2){
-      Console.WriteLine($"Player paid: ${player.GetCurrentBet() * 2}");
-    }
-    if(payoutRatio == 3){
-      Console.WriteLine($"Player paid: ${player.GetCurrentBet() * 3}");
+    else if (dealer.GetHandValue() > 21 && player.GetHandValue() < 22)
+    {
+      if(player.GetHandValue() == 21){
+        // blackjack
+        player.SetCurrentMoney(player.GetCurrentBet() * 3);
+        Console.WriteLine($"Player wins and is paid at 3:1 for ${player.GetCurrentBet() * 3}");
+      }else{
+        // not blackjack
+        player.SetCurrentMoney(player.GetCurrentBet() * 2);
+        Console.WriteLine($"Player wins and is paid at 2:1 for ${player.GetCurrentBet() * 2}");
+      }
+    } else if(player.GetHandValue() > 21){
+      // dealer wins
+      Console.WriteLine("The dealer wins the round");
     }
   }
 

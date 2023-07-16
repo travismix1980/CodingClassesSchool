@@ -40,12 +40,9 @@ public class Controller
           _showRules.ShowTheRules();
           break;
         case 3:
-          _atmController.HandleAtmMenu();
+          _atmController.HandleAtmMenu(_player);
           break;
         case 4:
-          Console.WriteLine("Save or load a game");
-          break;
-        case 5:
           Console.WriteLine("Thanks for playing");
           endflag = false; // set loop to end
           break;
@@ -67,7 +64,7 @@ public class Controller
       Console.WriteLine("4) $100");
       Console.Write("Please choose a Minimum Bet: ");
       difficulty[0] = Convert.ToInt32(Console.ReadLine());
-      if(difficulty[0] == 1){difficulty[0] = 2;} 
+      if(difficulty[0] == 1){difficulty[0] = 2;}
       else if(difficulty[0] == 2){difficulty[0] = 10;}
       else if(difficulty[0] == 3){difficulty[0] = 50;}
       else if(difficulty[0] == 4){difficulty[0] = 100;}

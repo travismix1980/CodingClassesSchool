@@ -54,6 +54,18 @@ public class ShowRules{
     Insurance: Insurance pays 2:1 on your insurance payment
                which is half your initial bet.  This allows
                you to break even if the dealer has BlackJack
+
+
+    Features that didn't make it
+    -----------------------------------------------------
+    Saving and Loading game
+    Multiplayer
+    Insurance
+    Spliting
+    Natural Blackjack vs Normal Blackjack
+    Hidden first dealer card
+    Better Blackjack interface
+
     ";
   }
 
