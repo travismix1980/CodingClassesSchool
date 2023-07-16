@@ -131,7 +131,13 @@ public class Table
         }
       }
       // process payouts
+      ProcessPayouts(_player, _dealer);
     }
+  }
+
+  public void ProcessPayouts(Player player, Dealer dealer){
+    Console.WriteLine($"Player hand total {player.GetHandValue()}");
+    Console.WriteLine($"Dealer hand total {dealer.GetHandValue()}");
   }
 
   public void TableInterface(Player player, Dealer dealer)
